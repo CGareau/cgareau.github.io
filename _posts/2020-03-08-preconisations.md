@@ -5,11 +5,11 @@ permalink: /recommendations/
 categories: PROCESS SUPPORT
 ---
 
-## Introduction
+# Introduction
 
 Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suivre lorsque vous déployez des applications 4D, agrémentées d'informations techniques.
 
-## Applications 4D
+# Applications 4D
 
  **Recommandé :**
 
