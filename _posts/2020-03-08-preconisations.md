@@ -5,51 +5,53 @@ permalink: /recommendations/
 categories: PROCESS SUPPORT
 ---
 
+[logo]: /recommendations/Best_practice.png "Logo Titre Texte 2"
+
 # Introduction
 
 Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suivre lorsque vous déployez des applications 4D, agrémentées d'informations techniques.
 
 # Applications 4D
 
- **Recommandé :**
+ **_Recommandé :_**
 
-- Utiliser le mode Unicode
+* Utiliser le mode Unicode
 
-- Utiliser une version 64 bits
+* Utiliser une version 64 bits
 
-- Déployer une application 4D compilée ou exécutable en prenant soin de cocher au préalable, dans les propriétés de votre base de données, de :
-    - cocher « Contrôle d'exécution »
-    - cocher « Générer le fichier de symboles »
-    - cocher « Générer le fichier d'erreur »
-    - cocher « Compilation multi-cible (32 bits et 64 bits) »
-    - sélectionner « Toutes les variables sont typées » pour le chemin de compilation
-    - sélectionner « Entier long » pour les numériques
-    - sélectionner « Entier long » pour les boutons
+* Déployer une application 4D compilée ou exécutable en prenant soin de cocher au préalable, dans les propriétés de votre base de données, de :
+    * cocher « Contrôle d'exécution »
+    * cocher « Générer le fichier de symboles »
+    * cocher « Générer le fichier d'erreur »
+    * cocher « Compilation multi-cible (32 bits et 64 bits) »
+    * sélectionner « Toutes les variables sont typées » pour le chemin de compilation
+    * sélectionner « Entier long » pour les numériques
+    * sélectionner « Entier long » pour les boutons
 
-- Utiliser des champs UUID pour les clés primaires
+* Utiliser des champs UUID pour les clés primaires
 
-- Dessiner les liens entre les tables
+* Dessiner les liens entre les tables
 
-- Ne plus utiliser la commande « MODIFIER SELECTION »
+* Ne plus utiliser la commande « MODIFIER SELECTION »
 
-- Utiliser les objets
+* Utiliser les objets
 
-- Utiliser des listbox pour les listes
+* Utiliser des listbox pour les listes
 
-- Utiliser exclusivement des noms d'objets
+* Utiliser exclusivement des noms d'objets
 
-- Dans l'onglet « Compatibilité » des propriétés de votre base de données convertie (issue d'une version précédente de 4D), cocher les options :
-    - « Exécuter CHERCHER PAR FORMULE » sur le serveur et « Exécuter TRIER PAR FORMULE sur le serveur »
-    - CHERCHER PAR FORMULE utilise jointures SQL »
+* Dans l'onglet « Compatibilité » des propriétés de votre base de données convertie (issue d'une version précédente de 4D), cocher les options :
+    * « Exécuter CHERCHER PAR FORMULE » sur le serveur et « Exécuter TRIER PAR FORMULE sur le serveur »
+    * CHERCHER PAR FORMULE utilise jointures SQL »
 
 # Numéros de port
 
-**Recommandé :** s'assurer que les ports ci-dessous soient disponibles et dédiés à l'application 4D Server
+**_Recommandé :_** s'assurer que les ports ci-dessous soient disponibles et dédiés à l'application 4D Server
 
-- ports obligatoires :
-    - port de publication client/serveur (modifiable dans les propriétés de la base, par défaut 19813)
-    - port applicatif (non modifiable : port de publication +1, par défaut 19814)
-    - port pour le serveur SQL (modifiable dans les propriétés de la base, par défaut 19812 ; même si vous n'utilisez pas le langage SQL, 4D vérifiera au démarrage si ce port est libre)
+* ports obligatoires :
+    * port de publication client/serveur (modifiable dans les propriétés de la base, par défaut 19813)
+    * port applicatif (non modifiable : port de publication +1, par défaut 19814)
+    * port pour le serveur SQL (modifiable dans les propriétés de la base, par défaut 19812 ; même si vous n'utilisez pas le langage SQL, 4D vérifiera au démarrage si ce port est libre)
 
 - ports facultatifs :
     - ports pour le serveur Web, utilisés pour les requêtes Web, SOAP ou REST (modifiables dans les propriétés de la base, par défaut 80 (HTTP) et 443 (HTTPS)) 
