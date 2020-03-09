@@ -1,11 +1,12 @@
 ---
-layout: default
+layout: post
 title: Préconisations pour vos applications 4D
 permalink: /recommendations/
-categories: PROCESS SUPPORT
+categories: [PROCESS, SUPPORT]
+tags: [recommandations, best, practice, 4D]
 ---
 
-[logo]: /recommendations/Best_practice.png "Logo Titre Texte 2"
+![Best_Practice](/recommendations/Best_practice.png)
 
 # Introduction
 
@@ -13,7 +14,7 @@ Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suiv
 
 # Applications 4D
 
- **_Recommandé :_**
+**_Recommandé :_**
 
 * Utiliser le mode Unicode
 
@@ -53,44 +54,44 @@ Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suiv
     * port applicatif (non modifiable : port de publication +1, par défaut 19814)
     * port pour le serveur SQL (modifiable dans les propriétés de la base, par défaut 19812 ; même si vous n'utilisez pas le langage SQL, 4D vérifiera au démarrage si ce port est libre)
 
-- ports facultatifs :
-    - ports pour le serveur Web, utilisés pour les requêtes Web, SOAP ou REST (modifiables dans les propriétés de la base, par défaut 80 (HTTP) et 443 (HTTPS)) 
-    - port pour l'interpréteur PHP (modifiable dans les propriétés de la base, par défaut 8002 sur l’adresse 127.0.0.1)
-    - d'autres ports peuvent également être utilisés par 4D, notamment par le plugin 4D Internet Commands
+* ports facultatifs :
+    * ports pour le serveur Web, utilisés pour les requêtes Web, SOAP ou REST (modifiables dans les propriétés de la base, par défaut 80 (HTTP) et 443 (HTTPS)) 
+    * port pour l'interpréteur PHP (modifiable dans les propriétés de la base, par défaut 8002 sur l’adresse 127.0.0.1)
+    * d'autres ports peuvent également être utilisés par 4D, notamment par le plugin 4D Internet Commands
 
 Vous pouvez modifier les ports utilisés par 4D, par défaut. Cependant attention certains ports sont utilisés ou réservés pour d'autres applications :
 
-- 0 à 1023 (Ports réservés) : Ces ports sont affectés par l'I.A.N.A. (Internet Assigned Numbers Authority) et sur la plupart des systèmes ne peuvent être utilisés que par des process système (ou racine) ou par des programmes exécutés par des utilisateurs disposant de privilèges d'accès avancés.
-    - 20 et 21 FTP;
-    - 23 TELNET;
-    - 25 SMTP;
-    - 37 NTP;
-    - 80 et 8080 HTTP;
-    - 443 HTTPS.
+* 0 à 1023 (Ports réservés) : Ces ports sont affectés par l'I.A.N.A. (Internet Assigned Numbers Authority) et sur la plupart des systèmes ne peuvent être utilisés que par des process système (ou racine) ou par des programmes exécutés par des utilisateurs disposant de privilèges d'accès avancés.
+    * 20 et 21 FTP;
+    * 23 TELNET;
+    * 25 SMTP;
+    * 37 NTP;
+    * 80 et 8080 HTTP;
+    * 443 HTTPS.
 
- - 1024 à 49151 (Ports enregistrés) : Ces ports sont enregistrés par l'I.A.N.A. et peuvent être utilisés sur la plupart des systèmes par des process utilisateurs ou par des programmes exécutés par des utilisateurs sans privilèges particuliers (routeurs, applications spécifiques...)
+ * 1024 à 49151 (Ports enregistrés) : Ces ports sont enregistrés par l'I.A.N.A. et peuvent être utilisés sur la plupart des systèmes par des process utilisateurs ou par des programmes exécutés par des utilisateurs sans privilèges particuliers (routeurs, applications spécifiques...)
 
- - 49152 à 65535 (Ports dynamiques et/ou privés) : Ces ports sont d'utilisation libre.
+ * 49152 à 65535 (Ports dynamiques et/ou privés) : Ces ports sont d'utilisation libre.
 
 Les personnes souhaitant utiliser les commandes TCP/IP pour synchroniser des bases de données doivent utiliser des numéros de port supérieurs à 49151.
 
 Pour de plus amples informations, veuillez visiter le [site Web de l'I.A.N.A.](http://www.iana.org)
 
-## Processeur
+# Processeur
 
-**Recommandé :**
+**_Recommandé :_**
 
-- pour les postes de travail : 1 CPU avec 2 cœurs minimum
+* pour les postes de travail : 1 CPU avec 2 cœurs minimum
 
-- pour les serveurs : 1 CPU avec 4 cœurs minimum (plutôt que 2 CPU avec 2 cœurs car la mémoire cache sera partagée entre tous les cœurs)
+* pour les serveurs : 1 CPU avec 4 cœurs minimum (plutôt que 2 CPU avec 2 cœurs car la mémoire cache sera partagée entre tous les cœurs)
 
-- utiliser le mode préemptif pour tirer intégralement parti des machines multi-cœurs (disponible à partir de la version 4D v15 R5 - exécuté en compilé 64 bits uniquement)
+* utiliser le mode préemptif pour tirer intégralement parti des machines multi-cœurs (disponible à partir de la version 4D v15 R5 - exécuté en compilé 64 bits uniquement)
 
-- déclarer explicitement toutes les méthodes que vous souhaitez démarrer en mode préemptif (cocher l'option dans les propriétés de vos méthodes et vérifier leur éligibilité grâce au compilateur)
+* déclarer explicitement toutes les méthodes que vous souhaitez démarrer en mode préemptif (cocher l'option dans les propriétés de vos méthodes et vérifier leur éligibilité grâce au compilateur)
 
-Depuis la version 4D v11 SQL, 4D tire partie à travers le système des multiples cœurs (*). En effet, le système d’exploitation répartit le « temps processeur » (total du temps de tous les cœurs) entre chaque application et entre les threads de chaque application. C’est ensuite l’application qui définit les priorités de chacun de ses threads, chaque thread travaillant individuellement.
+Depuis la version 4D v11 SQL, 4D tire partie à travers le système des multiples cœurs _(*)_. En effet, le système d’exploitation répartit le « temps processeur » (total du temps de tous les cœurs) entre chaque application et entre les threads de chaque application. C’est ensuite l’application qui définit les priorités de chacun de ses threads, chaque thread travaillant individuellement.
 
-* : Les systèmes supportant le multi-threading permettent de simuler 2 cœurs logiques pour chaque cœur, multipliant ainsi par deux la capacité de traitement de 4D Server.
+_(*) : Les systèmes supportant le multi-threading permettent de simuler 2 cœurs logiques pour chaque cœur, multipliant ainsi par deux la capacité de traitement de 4D Server._
  
 Dans 4D, il existe des threads coopératifs et des threads préemptifs. 4D les utilise automatiquement (pas de logiciel ou de préférence spécifique) en fonction du code 4D exécuté.
 
@@ -103,55 +104,52 @@ Par conséquent, en mode préemptif, les performances globales de l'application 
 En contrepartie, puisqu'en mode préemptif chaque thread est indépendant des autres et non géré directement par l'application, des conditions spécifiques sont à respecter dans les méthodes qui doivent être exécutées en préemptif. De plus, le mode préemptif est disponible uniquement dans certains contextes.
 
 
-Notes :
+`Notes :`
 
-    Un nouveau type de process, appelé process Worker, vous permet d'échanger des données entre n'importe quel process, y compris des process préemptifs.
+* _Un nouveau type de process, appelé process Worker, vous permet d'échanger des données entre n'importe quel process, y compris des process préemptifs._
 
-    La nouvelle commande « APPELER FORMULAIRE » fournit une solution élégante permettant d'appeler des objets d'interface depuis un process préemptif.
+* _La nouvelle commande « APPELER FORMULAIRE » fournit une solution élégante permettant d'appeler des objets d'interface depuis un process préemptif._
 
-    Bien qu'elles aient été conçues principalement pour les besoins liés à la communication interprocess dans le contexte des process préemptifs (accessibles en version 64 bits uniquement), les commandes « APPELER WORKER » et « APPELER FORMULAIRE » sont disponibles dans les versions 32 bits et peuvent être utilisées avec des process en mode coopératif.
-
+* _Bien qu'elles aient été conçues principalement pour les besoins liés à la communication interprocess dans le contexte des process préemptifs (accessibles en version 64 bits uniquement), les commandes « APPELER WORKER » et « APPELER FORMULAIRE » sont disponibles dans les versions 32 bits et peuvent être utilisées avec des process en mode coopératif._
 
 Il faut savoir aussi qu’un process non local de 4D Distant communique toujours avec deux threads jumeaux sur le serveur : un thread préemptif pour les requêtes DB4D (créer, stocker, charger, supprimer, trier, chercher, etc.) et un thread coopératif pour les requêtes applicatives (« date du jour(*) », « lire variable process (-1;..) », etc.). Un troisième thread préemptif peut aussi être créé si vous exécutez des commandes SQL (à l’appel à la commande « Debut SQL »).
 
-
 En fonction de la commande exécutée, 4D utilise tel ou tel thread en établissant la communication sur le port correspondant :
 
-    port de publication pour les requêtes DB4D (thread coopératif)
+* port de publication pour les requêtes DB4D (thread coopératif)
 
-    port applicatif (port de publication +1) pour les requêtes applicatives (thread préemptif)
+* port applicatif (port de publication +1) pour les requêtes applicatives (thread préemptif)
 
-    port SQL pour les requêtes SQL (thread préemptif)
-
+* port SQL pour les requêtes SQL (thread préemptif)
 
 En conclusion, il est très fortement recommandé d'avoir un processeur multi-cœurs même si l'utilisation de tous les cœurs dépendra des commandes 4D utilisées dans votre application en sachant que plus vous êtes préemptif, plus vous serez rapide sur une machine multi-cœurs.
 
-Important : si votre application 4D a été créée avec une très ancienne version de 4D, il est possible qu'une zone « Priorités CPU » soit visible dans l'onglet « Général » des propriétés de votre base de données. Ce paramétrage est désormais obsolète. Lorsque la zone est affichée, il est recommandé de cliquer sur le bouton « Réglages d'usine » afin de réinitialiser les paramètres et de les supprimer de la boîte de dialogue.
+`Important :` _si votre application 4D a été créée avec une très ancienne version de 4D, il est possible qu'une zone « Priorités CPU » soit visible dans l'onglet « Général » des propriétés de votre base de données. Ce paramétrage est désormais obsolète. Lorsque la zone est affichée, il est recommandé de cliquer sur le bouton « Réglages d'usine » afin de réinitialiser les paramètres et de les supprimer de la boîte de dialogue._
 
-6. Système d'exploitation
+# Système d'exploitation
 
-Recommandé : OS 64 bits et certifié par 4D
+**_Recommandé :_** OS 64 bits et certifié par 4D
 
 
-Important : Déployer les applications 4D sur des systèmes d'exploitation certifiés par notre département Qualité. Les pré-requis logiciel et système sont disponibles sur notre site web : https://fr.4d.com/resources/.
+`Important :` _Déployer les applications 4D sur des systèmes d'exploitation certifiés par notre département Qualité. Les pré-requis logiciel et système sont disponibles sur [notre site web](https://fr.4d.com/resources/4d-v18-lts)._
 
-    Sous Windows :
+* Sous Windows :
 
-        Pour déployer l'application 4D sur des postes de travail : Windows 10 ;
+    * Pour déployer l'application 4D sur des postes de travail : Windows 10 ;
 
-        Pour déployer l'application 4D Server sur un serveur ou l'application 4D sur un serveur d'applications :
-                    Windows Server 2016,
-                    Windows Server 2019 ;
+        * Pour déployer l'application 4D Server sur un serveur ou l'application 4D sur un serveur d'applications :
+            * Windows Server 2016,
+            * Windows Server 2019 ;
 
-        Déployer l'application 4D Server sur une machine dédiée (sous Windows Server, désactiver tous les rôles, notamment le rôle serveur de fichiers installé par défaut) ;
+        * Déployer l'application 4D Server sur une machine dédiée (sous Windows Server, désactiver tous les rôles, notamment le rôle serveur de fichiers installé par défaut) ;
 
-        Déployer la gamme 64 bits :
-                    4D Server est disponible en version 64 bits à partir de la version v12,
-                    4D est disponible en version 64 bits à partir de la version v16 (en version Preview en 16.0 puis dans les versions 16 Rx) ;
+        * Déployer la gamme 64 bits :
+            * 4D Server est disponible en version 64 bits à partir de la version v12,
+            * 4D est disponible en version 64 bits à partir de la version v16 (en version Preview en 16.0 puis dans les versions 16 Rx) ;
 
-        Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : communications signées numériques (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
+        * Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : communications signées numériques (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
 
-        Les paramètres par défaut des ordinateurs sous Windows et Windows Server sont optimisés pour économiser l'énergie. Il s'agit du meilleur réglage pour une utilisation bureau. Cependant un réglage sur « performances élevées » pour les serveurs permet d’obtenir des performances jusqu'à deux fois supérieures au mode « normal ».
+        * Les paramètres par défaut des ordinateurs sous Windows et Windows Server sont optimisés pour économiser l'énergie. Il s'agit du meilleur réglage pour une utilisation bureau. Cependant un réglage sur « performances élevées » pour les serveurs permet d’obtenir des performances jusqu'à deux fois supérieures au mode « normal ».
 
 
     Sous Mac :
