@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: Préconisations pour vos applications 4D
 permalink: /recommendations/
 categories: [PROCESS, SUPPORT]
@@ -133,13 +133,13 @@ En conclusion, il est très fortement recommandé d'avoir un processeur multi-c�
 
 `Important :` _Déployer les applications 4D sur des systèmes d'exploitation certifiés par notre département Qualité. Les pré-requis logiciel et système sont disponibles sur [notre site web](https://fr.4d.com/resources/4d-v18-lts)._
 
-* Sous Windows :
+* **_Sous Windows :_**
 
-    * Pour déployer l'application 4D sur des postes de travail : Windows 10 ;
+    * Pour déployer l'application **4D** sur des postes de travail : **Windows 10** ;
 
-        * Pour déployer l'application 4D Server sur un serveur ou l'application 4D sur un serveur d'applications :
-            * Windows Server 2016,
-            * Windows Server 2019 ;
+        * Pour déployer l'application **4D Server** sur un serveur ou l'application **4D** sur un serveur d'applications :
+            * **Windows Server 2016**,
+            * **Windows Server 2019** ;
 
         * Déployer l'application 4D Server sur une machine dédiée (sous Windows Server, désactiver tous les rôles, notamment le rôle serveur de fichiers installé par défaut) ;
 
