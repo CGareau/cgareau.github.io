@@ -1,17 +1,17 @@
 # Wiki 4D
 
-_`Wiki 4D` regroupe différents articles et process techniques. Vous pouvez contribuer au développement du site ou à l'ajout de contenu technique._
+_`Wiki 4D` regroupe différents articles et process techniques._
 
 
 ## Contribuer
 
-Intéressé(e) pour contribuer ? Vous êtes le bienvenu !
-`Wiki 4D` est un projet open source, fruit de la collaboration de passionés de la technologie 4D.
+Intéressé(e) pour contribuer au développement du site ? Vous êtes le(a) bienvenu(e) !
+`Wiki 4D` est un projet open source, fruit de la collaboration de passionés par la technologie 4D.
 
 
-### Prévisualiser le site web en local
+### Prévisualiser le site en local
 
-Si vous souhaitez prévisualiser le site localement (par exemple pour proposer une modification ou un ajout) :
+Si vous souhaitez prévisualiser le site localement (par exemple pour proposer une modification ou un ajout de contenu) :
 
 * Cloner le repository en local (`git clone https://github.com/CGareau/cgareau.github.io.git`)
 
@@ -21,7 +21,7 @@ Si vous souhaitez prévisualiser le site localement (par exemple pour proposer u
 
 * Exécuter `bundle exec jekyll serve` pour démarrer la prévisualisation du site en local
 
-* Se rendre à l'adresse [localhost:4000](http://127.0.0.1:4000/) dans votre navigateur.
+* Se rendre à l'adresse [localhost:4000](http://127.0.0.1:4000/) dans votre navigateur pour parcourir le site
 
 
 ### Modifier ou ajouter du contenu en local

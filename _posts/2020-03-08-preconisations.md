@@ -6,7 +6,7 @@ categories: [PROCESS, SUPPORT]
 tags: [recommandations, best, practice, 4D]
 ---
 
-![Best_Practice](/recommendations/Best_practice.png)
+![Best_Practice](/images/Best_practice.png)
 
 ## Introduction
 
