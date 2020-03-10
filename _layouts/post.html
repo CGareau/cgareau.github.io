@@ -1,7 +1,29 @@
 ---
 layout: default
 ---
-<h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
 
-{{ content }}
+<div class="home">
+
+  <aside id="sidebar">
+    {%- if site.posts.size > 0 -%}
+    {%- for post in site.posts -%}
+        {%- assign date_format = site.minima.date_format | default: "%-d %b, %Y" -%}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      {%- if site.show_excerpts -%}
+        {{ post.excerpt }}
+      {%- endif -%}
+    {%- endfor -%}
+  
+  {%- endif -%}
+  </aside>
+
+  {%- if page.title -%}
+      <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+</div>

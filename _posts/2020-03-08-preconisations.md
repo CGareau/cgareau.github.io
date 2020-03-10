@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Préconisations pour vos applications 4D
 permalink: /recommendations/
 categories: [PROCESS, SUPPORT]
@@ -8,11 +8,11 @@ tags: [recommandations, best, practice, 4D]
 
 ![Best_Practice](/recommendations/Best_practice.png)
 
-# Introduction
+## Introduction
 
 Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suivre lorsque vous déployez des applications 4D, agrémentées d'informations techniques.
 
-# Applications 4D
+## Applications 4D
 
 **_Recommandé :_**
 
@@ -45,7 +45,7 @@ Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suiv
     * « Exécuter CHERCHER PAR FORMULE » sur le serveur et « Exécuter TRIER PAR FORMULE sur le serveur »
     * CHERCHER PAR FORMULE utilise jointures SQL »
 
-# Numéros de port
+## Numéros de port
 
 **_Recommandé :_** s'assurer que les ports ci-dessous soient disponibles et dédiés à l'application 4D Server
 
@@ -77,7 +77,7 @@ Les personnes souhaitant utiliser les commandes TCP/IP pour synchroniser des bas
 
 Pour de plus amples informations, veuillez visiter le [site Web de l'I.A.N.A.](http://www.iana.org)
 
-# Processeur
+## Processeur
 
 **_Recommandé :_**
 
@@ -126,7 +126,7 @@ En conclusion, il est très fortement recommandé d'avoir un processeur multi-c�
 
 `Important :` _si votre application 4D a été créée avec une très ancienne version de 4D, il est possible qu'une zone « Priorités CPU » soit visible dans l'onglet « Général » des propriétés de votre base de données. Ce paramétrage est désormais obsolète. Lorsque la zone est affichée, il est recommandé de cliquer sur le bouton « Réglages d'usine » afin de réinitialiser les paramètres et de les supprimer de la boîte de dialogue._
 
-# Système d'exploitation
+## Système d'exploitation
 
 **_Recommandé :_** OS 64 bits et certifié par 4D
 
@@ -176,7 +176,7 @@ Bien que largement réécrites, les applications 4D 64 bits sont hautement compa
 
 D'un autre côté, l'implémentation de l'architecture 64 bits nous a donné l'opportunité de prendre en charge des fonctionnalités puissantes comme les process 4D préemptifs (multithread), de moderniser les impressions ainsi que les d'éditeurs d'états rapides et d'étiquettes, ou encore de faire bénéficier vos applications des animations d'objets natives (4D 64 bits sous OS X).
 
-7. Mémoire
+## Mémoire
 
 Recommandé :
 
@@ -269,7 +269,7 @@ Ces commandes sont disponibles uniquement dans les contextes suivants :
 
     4D Server ou 4D en mode local
 
-8. Disque dur
+## Disque dur
 
 Recommandé :
 

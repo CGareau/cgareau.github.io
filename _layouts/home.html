@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if page.title -%}
+      <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+    <aside id="sidebar">
+      <a href="/archive/master.zip" class="button">
+        <small>Download</small>
+        .zip file
+      </a>
+
+      <p class="repo-owner"><a href="https://blog.4d.com/">Blog</a></p>
+
+      <p class="repo-owner"><a href="https://developer.4d.com/">Developer Center</a></p>
+
+      <p class="repo-owner"><a href="https://doc.4d.com/4Dv18/4D/18/Liste-alphabetique-des-commandes.902-4504285.fr.html">Documentation</a></p>
+
+      <p class="repo-owner"><a href="https://forums.4d.com/MyHome/FR">Forum</a></p>
+
+      <p class="repo-owner"><a href="https://kb.4d.com/">Knowledge Base</a></p>
+
+      <p class="repo-owner"><a href="https://taow.4d.com/Home/home.fr.html">TAOW</a></p>
+
+      <p class="repo-owner"><a href="https://fr.4d.com/">Website</a></p>
+
+      <p class="repo-owner"><a href="https://github.com/CGareau/cgareau.github.io">Wiki</a> is maintained by <a href="https://github.com/CGareau">cgareau</a>.</p>
+
+      <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+    </aside>
+  
+  {%- if site.posts.size > 0 -%}
+    <h1 class="post-list-heading">{{ page.list_title | default: "Process" }}</h1>
+    {%- for post in site.posts -%}
+      <h2>
+        {%- assign date_format = site.minima.date_format | default: "%-d %b, %Y" -%}
+        <span class="post-meta">{{ post.date | date: date_format }}</span> :
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h2>
+      {%- if site.show_excerpts -%}
+        {{ post.excerpt }}
+      {%- endif -%}
+    {%- endfor -%}
+
+  {%- endif -%}
+
+</div>
