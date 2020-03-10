@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-
-  <meta name="viewport" content="width=device-width">
-  
-  <title>cgareau.github.io/README.md at master · CGareau/cgareau.github.io · GitHub</title>
-    <meta name="description" content="Wiki 4D regroupe différents articles et process techniques. Vous pouvez contribuer au développement du site ou à l'ajout de contenu technique.">
-    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
-  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
-  <meta property="fb:app_id" content="1401488693436528">
       
   <div id="readme" class="Box-body readme blob js-code-block-container">
-    <article class="markdown-body entry-content p-3 p-md-6" itemprop="text"><h1><a id="user-content-the-architect-theme" class="anchor" aria-hidden="true" href="#the-architect-theme"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Architect theme</h1>
-
-<p><a href="https://travis-ci.org/pages-themes/architect" rel="nofollow"><img src="https://camo.githubusercontent.com/f50b84e13fdbb61d847742c34259c58469c7d2b2/68747470733a2f2f7472617669732d63692e6f72672f70616765732d7468656d65732f6172636869746563742e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://travis-ci.org/pages-themes/architect.svg?branch=master" style="max-width:100%;"></a> <a href="https://badge.fury.io/rb/jekyll-theme-architect" rel="nofollow"><img src="https://camo.githubusercontent.com/067029696cc56347dcf1d8e469d930f99a9a4106/68747470733a2f2f62616467652e667572792e696f2f72622f6a656b796c6c2d7468656d652d6172636869746563742e737667" alt="Gem Version" data-canonical-src="https://badge.fury.io/rb/jekyll-theme-architect.svg" style="max-width:100%;"></a></p>
+    <article class="markdown-body entry-content p-3 p-md-6" itemprop="text"><h1><a id="user-content-wiki-4d" class="anchor" aria-hidden="true" href="#wiki-4d"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wiki 4D</h1>
 
 <p><em>Wiki 4D regroupe différents articles et process techniques. Vous pouvez contribuer au développement du site ou à l'ajout de contenu technique</em></p>
 
 <h2><a id="user-content-contributing" class="anchor" aria-hidden="true" href="#contributing"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contribuer</h2>
-<p>Intéressé pour contribuer au wiki ? Wiki 4D est un projet open source, fruit de la collaboration de passionés de la technologie 4D.</p>
+<p>Intéressé(e) pour contribuer au wiki ? Wiki 4D est un projet open source, fruit de la collaboration de passionés de la technologie 4D.</p>
 
 <h3><a id="user-content-previewing-the-theme-locally" class="anchor" aria-hidden="true" href="#previewing-the-theme-locally"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prévisualiser le site web en local</h3>
 <p>Si vous souhaitez prévisualiser le site localement (par exemple pour proposer une modification ou un ajout) :</p>
