@@ -122,7 +122,7 @@ En fonction de la commande exécutée, 4D utilise tel ou tel thread en établiss
 
 * port SQL pour les requêtes SQL (thread préemptif)
 
-En conclusion, il est très fortement recommandé d'avoir un processeur multi-cœurs même si l'utilisation de tous les cœurs dépendra des commandes 4D utilisées dans votre application en sachant que plus vous êtes préemptif, plus vous serez rapide sur une machine multi-cœurs.
+`En conclusion`, il est très fortement recommandé d'avoir un processeur multi-cœurs même si l'utilisation de tous les cœurs dépendra des commandes 4D utilisées dans votre application en sachant que plus vous êtes préemptif, plus vous serez rapide sur une machine multi-cœurs.
 
 `Important :` _si votre application 4D a été créée avec une très ancienne version de 4D, il est possible qu'une zone « Priorités CPU » soit visible dans l'onglet « Général » des propriétés de votre base de données. Ce paramétrage est désormais obsolète. Lorsque la zone est affichée, il est recommandé de cliquer sur le bouton « Réglages d'usine » afin de réinitialiser les paramètres et de les supprimer de la boîte de dialogue._
 
