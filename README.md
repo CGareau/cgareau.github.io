@@ -24,40 +24,40 @@ Si vous souhaitez prévisualiser le site localement (par exemple pour proposer u
 * Se rendre à l'adresse [localhost:4000](http://127.0.0.1:4000/) dans votre navigateur.
 
 
-### Modifier ou ajouter du contenu
+### Modifier ou ajouter du contenu en local
 
 * Créer une nouvelle branche `git checkout -b nom_de_votre_branche`
 
 * Effectuer votre modification ou votre ajout en local
 
-* Avoir la liste des modifications que vous avez effectuées `git status`
+* Obtenir la liste des modifications que vous avez effectuées `git status`
 
-* Ajouter toutes vos modifications dans l'index en local `git add .`
+* Ajouter toutes vos modifications dans votre index en local `git add .`
 
 * Ajouter vos modifications dans votre repository local `git commit -m "votre_texte_expliquant_la_modif_réalisée"`
 
 
-### Proposer votre modification
+### Proposer votre modification sur GitHub
 
 * Envoyer le contenu de vos modifications dans le repository distant `git push origin nom_de_votre_branche`
 
 * Soumettre une `pull request` en expliquant le travail effectué
 
 
-### Intégrer votre modification dans la branche principale
+### Intégrer votre modification dans GitHub
 
-**_Une fois que vos modifications ont été validées_**
+**_Une fois que votre `pull request` a été validée_**
 
 * Rejouer vos modifications dans la branche master `git rebase master`
 
 * Se mettre dans la branche master `git checkout master`
 
-* Intégrer vos modifications dans le repository local `git merge nom_de_votre_branche`
+* Intégrer vos modifications dans votre repository local `git merge nom_de_votre_branche`
 
 * Supprimer votre branche : `git branch -d nom_de_votre_branche`
 
-* Récupérer les dernières mises à jour à partir du repository distant `git fetch`
+* Récupérer les dernières mises à jour des autres contributeurs à partir du repository distant `git fetch`
 
-* Intégrer les mises à jour dans votre repository local `git pull origin master`
+* Intégrer ces mises à jour dans votre repository local `git pull origin master`
 
 * Intégrer vos modifications dans le repository distant `git push origin master`
