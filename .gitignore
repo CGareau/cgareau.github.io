@@ -1,6 +1,8 @@
 _site
 .sass-cache
-.jekyll-cache/*
+.jekyll-cache
+.jekyll-cache/Jekyll
+.jekyll-cache/Jekyll/Cache
 .jekyll-metadata
 Gemfile
 Gemfile.lock
