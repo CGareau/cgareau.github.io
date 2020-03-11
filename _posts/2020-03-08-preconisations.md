@@ -162,7 +162,7 @@ En fonction de la commande exécutée, 4D utilise tel ou tel thread en établiss
             * 4D Server est disponible en version 64 bits à partir de la version v12,
             * 4D est disponible en version 64 bits à partir de la version v16 (en version Preview en 16.0 puis dans les versions 16 Rx) ;
 
-        * Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : communications signées numériques (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
+        * Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : [communications signées numériques](https://docs.microsoft.com/fr-fr/windows/security/threat-protection/security-policy-settings/microsoft-network-client-digitally-sign-communications-always) (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
 
         * Les paramètres par défaut des ordinateurs sous Windows et Windows Server sont optimisés pour économiser l'énergie. Il s'agit du meilleur réglage pour une utilisation bureau. Cependant un réglage sur « **performances élevées** » pour les serveurs permet d’obtenir des performances jusqu'à deux fois supérieures au mode « normal ».
 
