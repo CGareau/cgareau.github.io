@@ -2,12 +2,14 @@
 
 _`Wiki 4D` regroupe différents articles et process techniques._
 
+<br>
 
 ## Contribuer
 
 Intéressé(e) pour contribuer au développement du site ? Vous êtes le(a) bienvenu(e) !
 `Wiki 4D` est un projet open source, fruit de la collaboration de passionés par la technologie 4D.
 
+<br>
 
 ### Prévisualiser le site en local
 
@@ -23,6 +25,7 @@ Si vous souhaitez prévisualiser le site localement (par exemple pour proposer u
 
 * Se rendre à l'adresse [localhost:4000](http://127.0.0.1:4000/) dans votre navigateur pour parcourir le site
 
+<br>
 
 ### Modifier ou ajouter du contenu en local
 
@@ -36,6 +39,7 @@ Si vous souhaitez prévisualiser le site localement (par exemple pour proposer u
 
 * Ajouter vos modifications dans votre repository local `git commit -m "votre_texte_expliquant_la_modif_réalisée"`
 
+<br>
 
 ### Proposer votre modification sur GitHub
 
@@ -43,6 +47,7 @@ Si vous souhaitez prévisualiser le site localement (par exemple pour proposer u
 
 * Soumettre une `pull request` en expliquant le travail effectué
 
+<br>
 
 ### Intégrer votre modification dans GitHub
 
