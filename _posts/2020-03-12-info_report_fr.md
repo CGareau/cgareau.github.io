@@ -52,7 +52,6 @@ Vous pouvez juste créer un rapport en exécutant la méthode partagée `aa4D_NP
 
 Les rapports (fichier texte) sont créés dans un nouveau dossier `Folder_Reports` à côté du fichier de données.
 
-<br>
 
 Dans les 2 cas, vous devez ensuite créer une nouvelle méthode partagée `aa4D_Host_GetDBParam` avec le code ci-dessous :
 
@@ -87,28 +86,28 @@ Démonstration vidéo sur l'utilisation du composant en français :
 
 ## Téléchargement
 
-* documentation (en anglais) : 4D_Info_Report_v4_9_Ref_v28.pdf
+* [documentation](/archives/4D_Info_Report_v4_9_Ref_v28.pdf) (en anglais)
 
-* base hôte v15 utilisant des méthodes hôtes à inclure dans votre base (merci d'ajouter le composant dans le dossier `Components` pour tester) : 4D_Info_Report_Host_T_v7_v15.zip
+* [base hôte v15](/archives/4D_Info_Report_Host_T_v7_v15.zip) utilisant des méthodes hôtes à inclure dans votre base (merci d'ajouter le composant dans le dossier `Components` pour tester)
 
-* composant en version 4D v18 : 4D_Info_Report_v4_9rZF_v18.zip
+* [composant en version 4D v18](/archives/4D_Info_Report_v4_9rZF_v18.zip)
 
-* composant en version 4D v17 (compilé uniquement en 64 bits) : 4D_Info_Report_v4_9rZF_64-bit_v17.zip
+* [composant en version 4D v17](/archives/4D_Info_Report_v4_9rZF_64-bit_v17.zip) (compilé _uniquement_ en 64 bits)
 
-* composant en version 4D v17 (compilé aussi en 64 bits) : 4D_Info_Report_v4_9rZF_v17.zip
+* [composant en version 4D v17](/archives/4D_Info_Report_v4_9rZF_v17.zip) (compilé aussi en 64 bits)
 
 <br>
 
 ## Archives
 
-* composant en version 4D v16 (compilé aussi en 64 bits) : 4D_Info_Report_v4_9rZC_rev1_v16.zip
+* [composant en version 4D v16](/archives/4D_Info_Report_v4_9rZC_rev1_v16.zip) (compilé aussi en 64 bits)
 
-* composant en version 4D v15 (compilé aussi en 64 bits) : 4D_Info_Report_v4_9rZ8_rev1_v15.zip
+* [composant en version 4D v15](/archives/4D_Info_Report_v4_9rZ8_rev1_v15.zip) (compilé aussi en 64 bits)
 
-* composant en version 4D v14 (compilé aussi en 64 bits) : 4D_Info_Report_v4_9rZ2_v14_rev1.zip
+* [composant en version 4D v14](/archives/4D_Info_Report_v4_9rZ2_v14_rev1.zip) (compilé aussi en 64 bits)
 
-* composant en version 4D v13 (compilé aussi en 64 bits) : 4D_Info_Report_v4_9rZ2_v13_rev1.zip
+* [composant en version 4D v13](/archives/4D_Info_Report_v4_9rZ2_v13_rev1.zip) (compilé aussi en 64 bits)
 
-* composant en version 4D v12 (compilé aussi en 64 bits) : 4D_Info_Report_v4_9rZ_v12.zip
+* [composant en version 4D v12](/archives/4D_Info_Report_v4_9rZ_v12.zip) (compilé aussi en 64 bits)
 
-* base hôte v12 utilisant des méthodes hôtes à inclure dans votre base (merci d'ajouter le composant dans le dossier `Components` pour tester) : 4D_Info_Report_Host_T_v6_v12.zip
+* [base hôte v12](/archives/4D_Info_Report_Host_T_v6_v12.zip) utilisant des méthodes hôtes à inclure dans votre base (merci d'ajouter le composant dans le dossier `Components` pour tester)

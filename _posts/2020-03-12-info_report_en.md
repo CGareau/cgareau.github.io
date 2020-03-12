@@ -53,7 +53,6 @@ You can just create one report using the shared method `aa4D_NP_Util_CreateRepor
 
 The created reports (text files) are stored in a created folder `Folder_Reports` next to the data file.
 
-<br>
 
 In both cases, you should create a new shared method `aa4D_Host_GetDBParam` with the code below:
 
@@ -83,28 +82,28 @@ You can analyze these reports:
 
 ## Download
 
-* reference of the component: 4D_Info_Report_v4_9_Ref_v28.pdf
+* [reference of the component](/archives/4D_Info_Report_v4_9_Ref_v28.pdf)
 
-* host database (v15) with some host shared methods example (please add the component in the `Components` folder for your test: 4D_Info_Report_Host_T_v7_v15.zip
+* [host database (v15)](/archives/4D_Info_Report_Host_T_v7_v15.zip) with some host shared methods example (please add the component in the `Components` folder for your test)
 
-* component for version 4D v18: 4D_Info_Report_v4_9rZF_v18.zip
+* [component for version 4D v18](/archives/4D_Info_Report_v4_9rZF_v18.zip)
 
-* component for version 4D v17 (only compiled for 64-bit): 4D_Info_Report_v4_9rZF_64-bit_v17.zip
+* [component for version 4D v17](/archives/4D_Info_Report_v4_9rZF_64-bit_v17.zip) (_only_ compiled for 64-bit)
 
-* component for version 4D v17 (also compiled for 64-bit): 4D_Info_Report_v4_9rZF_v17.zip
+* [component for version 4D v17](/archives/4D_Info_Report_v4_9rZF_v17.zip) (also compiled for 64-bit)
 
 <br>
 
 ## Archives
 
-* component for version 4D v16 (also compiled for 64-bit): 4D_Info_Report_v4_9rZC_rev1_v16.zip
+* [component for version 4D v16](/archives/4D_Info_Report_v4_9rZC_rev1_v16.zip) (also compiled for 64-bit)
 
-* component for version 4D v15 (also compiled for 64-bit): 4D_Info_Report_v4_9rZ8_rev1_v15.zip
+* [component for version 4D v15](/archives/4D_Info_Report_v4_9rZ8_rev1_v15.zip) (also compiled for 64-bit)
 
-* component for version 4D v14 (also compiled for 64-bit): 4D_Info_Report_v4_9rZ2_v14_rev1.zip
+* [component for version 4D v14](/archives/4D_Info_Report_v4_9rZ2_v14_rev1.zip) (also compiled for 64-bit)
 
-* component for version 4D v13 (also compiled for 64-bit): 4D_Info_Report_v4_9rZ2_v13_rev1.zip
+* [component for version 4D v13](/archives/4D_Info_Report_v4_9rZ2_v13_rev1.zip) (also compiled for 64-bit)
 
-* component for version 4D v12 (also compiled for 64-bit): 4D_Info_Report_v4_9rZ_v12.zip
+* [component for version 4D v12](/archives/4D_Info_Report_v4_9rZ_v12.zip) (also compiled for 64-bit)
 
-* host database (v12) with some host shared methods example (please add the component in the `Components` folder for your test: 4D_Info_Report_Host_T_v6_v12.zip
+* [host database (v12)](/archives/4D_Info_Report_Host_T_v6_v12.zip) with some host shared methods example (please add the component in the `Components` folder for your test
