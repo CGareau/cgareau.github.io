@@ -1,4 +1,5 @@
 ---
+published: true
 layout: post
 title: Outil "4D_Info_Report"
 permalink: /info_report_fr/
