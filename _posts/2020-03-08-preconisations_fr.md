@@ -1,4 +1,5 @@
 ---
+published: true
 layout: post
 title: Préconisations pour vos applications 4D
 permalink: /preconisations_fr/
@@ -10,6 +11,11 @@ lang-ref: preconisations
 
 ![Best_Practice](/images/Best_practice.png)
 
+## Téléchargement
+
+[Télécharger le document au format PDF](/archives/Préconisations_4D.pdf)
+
+<br>
 
 ## Introduction
 
@@ -64,7 +70,7 @@ Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suiv
 * ports facultatifs :
     * ports pour le serveur Web, utilisés pour les requêtes Web, SOAP ou REST (modifiables dans les propriétés de la base, par défaut **80** (HTTP) et **443** (HTTPS)) 
     * port pour l'interpréteur PHP (modifiable dans les propriétés de la base, par défaut **8002** sur l’adresse 127.0.0.1)
-    * d'autres ports peuvent également être utilisés par 4D, notamment par le plugin 4D Internet Commands
+    * d'autres ports peuvent également être utilisés par 4D, notamment par le plugin [4D Internet Commands](https://doc.4d.com/4Dv18/4D/18/Annexe-B-Numeros-des-ports-TCP.300-4689600.fr.html)
 
 <br>
 Vous pouvez modifier les ports utilisés par 4D, par défaut. Cependant attention certains ports sont utilisés ou réservés pour d'autres applications :
@@ -154,19 +160,19 @@ En fonction de la commande exécutée, 4D utilise tel ou tel thread en établiss
 
     * Pour déployer l'application **4D** sur des postes de travail : **Windows 10** ;
 
-        * Pour déployer l'application **4D Server** sur un serveur ou l'application **4D** sur un serveur d'applications :
-            * **Windows Server 2016**,
-            * **Windows Server 2019** ;
+    * Pour déployer l'application **4D Server** sur un serveur ou l'application **4D** sur un serveur d'applications :
+        * **Windows Server 2016**,
+        * **Windows Server 2019** ;
 
-        * Déployer l'application 4D Server sur une machine dédiée (sous Windows Server, désactiver tous les rôles, notamment le rôle serveur de fichiers installé par défaut) ;
+    * Déployer l'application 4D Server sur une machine dédiée (sous Windows Server, désactiver tous les rôles, notamment le rôle serveur de fichiers installé par défaut) ;
 
-        * Déployer la gamme 64 bits :
-            * 4D Server est disponible en version 64 bits à partir de la version v12,
-            * 4D est disponible en version 64 bits à partir de la version v16 (en version Preview en 16.0 puis dans les versions 16 Rx) ;
+    * Déployer la gamme 64 bits :
+        * 4D Server est disponible en version 64 bits à partir de la version v12,
+        * 4D est disponible en version 64 bits à partir de la version v16 (en version Preview en 16.0 puis dans les versions 16 Rx) ;
 
-        * Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : [communications signées numériques](https://docs.microsoft.com/fr-fr/windows/security/threat-protection/security-policy-settings/microsoft-network-client-digitally-sign-communications-always) (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
+    * Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : [communications signées numériques](https://docs.microsoft.com/fr-fr/windows/security/threat-protection/security-policy-settings/microsoft-network-client-digitally-sign-communications-always) (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
 
-        * Les paramètres par défaut des ordinateurs sous Windows et Windows Server sont optimisés pour économiser l'énergie. Il s'agit du meilleur réglage pour une utilisation bureau. Cependant un réglage sur « **performances élevées** » pour les serveurs permet d’obtenir des performances jusqu'à deux fois supérieures au mode « normal ».
+    * Les paramètres par défaut des ordinateurs sous Windows et Windows Server sont optimisés pour économiser l'énergie. Il s'agit du meilleur réglage pour une utilisation bureau. Cependant un réglage sur « **performances élevées** » pour les serveurs permet d’obtenir des performances jusqu'à deux fois supérieures au mode « normal ».
 
 <br>
 
@@ -242,7 +248,7 @@ Nous vous conseillons :
 
 * déployer la version 64 bits de 4D Server (une application 32 bits ne peut pas utiliser plus de 4 Go de mémoire, une application 64 bits dispose quant à elle de 8 To d'espace adressable théorique !) ;
 
-* déterminer la valeur idéale du cache pour votre base en production en utilisant le [composant « 4D_Info_Report »](http://taow.4d.com/Outil-4D-Info-Report/PS.1938271.fr.html).
+* déterminer la valeur idéale du cache pour votre base en production en utilisant le [composant « 4D_Info_Report »](/info_report_fr/).
 
 (Prévoir des slots de libre si le fichier de données est amené à grossir rapidement pour rajouter de la mémoire par la suite)
 
@@ -333,6 +339,10 @@ Pour améliorer la tolérance aux pannes, la sécurité et/ou les performances d
 
 <br>
 Vous trouverez ci-dessous un comparatif des différents niveaux de RAID suivi des types de système RAID. Ce tableau n'a pas été réalisé par 4D mais je trouve qu'il résume bien ce qu'il faut savoir sur le RAID.
+
+![Best_Practice](/images/preconisations1.png)
+
+![Best_Practice](/images/preconisations2.png)
 
 <br>
 
@@ -519,11 +529,11 @@ Sécurité et protection des données est une zone très large : cela commence p
 
 4D Server est un système intégré de développement client / serveur, optimisé pour créer des applications d'entreprise robustes avec un système de base de données intégrée. Bien que 4D peut envoyer des données (avec des normes telles que HTTP, SOAP, ODBC ou OCI) ou peut être accessible à partir de l'extérieur (avec HTTP, SOAP, ODBC / SQL), l'utilisation principale est basée sur le langage de développement interne « 4D », en utilisant un protocole réseau interne et propriétaire pour communiquer entre le client et le serveur.
 
-La communication réseau prend en charge le cryptage TLS 1.2, soit à l’aide d’une clé prédéfinie (pas de certificat SSL requis), soit avec un fichier contenant une clé.
+La communication réseau prend en charge le [cryptage TLS 1.2](https://tools.ietf.org/html/rfc5246), soit à l’aide d’une clé prédéfinie (pas de certificat SSL requis), soit avec un fichier contenant une clé.
 
 La liaison étroite entre le langage de développement et la communication réseau permet une construction de haut niveau dans le concept de protection, en évitant les scénarios d'attaque typiques tels que l'injection SQL ou des attaques « buffer overflow ».
 
-Le langage 4D est un langage puissant et mature, parfaitement conçu pour construire des systèmes d'applications d'entreprise. Il propose plus de 1 500 commandes, couvrant les opérations de base de données (tris, requêtes, créations, transactions et ainsi de suite), l’impression, la communication avec d’autres appareils ou ordinateurs, la gestion des documents, une fenêtre ou une interface utilisateur, et bien plus encore. Jeter un coup d’œil au manuel du langage 4D pour plus de détails.
+Le langage 4D est un langage puissant et mature, parfaitement conçu pour construire des systèmes d'applications d'entreprise. Il propose plus de 1 500 commandes, couvrant les opérations de base de données (tris, requêtes, créations, transactions et ainsi de suite), l’impression, la communication avec d’autres appareils ou ordinateurs, la gestion des documents, une fenêtre ou une interface utilisateur, et bien plus encore. Jeter un coup d’œil au [manuel du langage 4D](https://doc.4d.com/4Dv18/4D/18/Liste-alphabetique-des-commandes.902-4504285.fr.html) pour plus de détails.
 
 Le langage lui-même est segmenté, même en mode interprété (développement ou prototypage), il n’est jamais exécuté comme une évaluation de texte. En mode production, le langage est compilé et intègre un contrôle automatique de plage de version contre les attaques de type « buffer overflow ».
 
@@ -531,7 +541,7 @@ Le langage lui-même est segmenté, même en mode interprété (développement o
 
 **Serveur Web**
 
-4D dispose de son propre serveur HTTP, un puissant serveur multithread pour les contenus statiques et dynamiques. L'intégration étroite a un impact considérable sur la sécurité accrue.
+4D dispose de son [propre serveur HTTP](https://doc.4d.com/4Dv18/4D/18/Presentation-du-serveur-Web.300-4504719.fe.html), un puissant serveur multithread pour les contenus statiques et dynamiques. L'intégration étroite a un impact considérable sur la sécurité accrue.
 
 Sans compter une meilleure sécurité du code (voir ci-dessous), ce concept supprime le problème de mise à jour typique oublié. Comme tout est intégré, il n'y a qu'un seul logiciel à mettre à jour. Les solutions habituelles nécessitent une énorme quantité de logiciels à maintenir à jour : PHP, OpenSSL, Apache, NodeJS, etc. Tous ont besoin de mises à jour régulières et il est commun que certaines parties restent non patchées pendant longtemps, en particulier si elles sont utilisées comme solution de service, sans une équipe informatique spécialisée.
 
@@ -574,19 +584,19 @@ L'algorithme RC4 a connu des problèmes de sécurité et est maintenant dépréc
 
 **Serveur SOAP**
 
-Similaire au serveur HTTP, un serveur SOAP est intégré, ce qui permet un contrôle détaillé d'accès, basé sur des objets métiers (pas seulement au niveau de la base de données).
+Similaire au serveur HTTP, un [serveur SOAP](https://doc.4d.com/4Dv16/4D/16.6/Commandes-du-theme-Web-Services-Serveur.300-4445828.fr.html) est intégré, ce qui permet un contrôle détaillé d'accès, basé sur des objets métiers (pas seulement au niveau de la base de données).
 
 <br>
 
 **Serveur SQL**
 
-Alors que l’accès aux données pour un client 4D utilise par défaut un protocole propriétaire, l’accès SQL (natif ou via ODBC) est aussi bien pris en charge. En outre, il existe des drivers PDO Open Source disponibles (PHP Data Objects). L’accès SQL au niveau base de données peut être contrôlé par un système de mot de passe, des schémas SQL ou à l’aide de vues SQL.
+Alors que l’accès aux données pour un client 4D utilise par défaut un protocole propriétaire, l’accès SQL (natif ou via ODBC) est aussi bien pris en charge. En outre, il existe des drivers PDO Open Source disponibles ([PHP Data Objects](https://www.php.net/manual/en/intro.pdo.php)). L’accès SQL au niveau base de données peut être contrôlé par un système de mot de passe, des schémas SQL ou à l’aide de [vues SQL](https://doc.4d.com/4Dv18/4D/18/CREATE-VIEW.300-4650816.fr.html).
 
 <br>
 
 **Système de mot de passe 4D**
 
-Le système propriétaire d'autorisation d’accès utilisateur de 4D peut être remplacé par des systèmes tiers. 4D prend en charge l'utilisation directe de Microsoft Active Directory et LDAP, ainsi que des systèmes entièrement personnalisés.
+Le système propriétaire d'autorisation d’accès utilisateur de 4D peut être remplacé par des systèmes tiers. 4D prend en charge l'utilisation directe de [Microsoft Active Directory et LDAP](https://blog.4d.com/single-sign-on-sso/), ainsi que des systèmes entièrement personnalisés.
 
 <br>
 
@@ -610,7 +620,7 @@ La sauvegarde standard fait partie du produit 4D, aucune licence supplémentaire
 
 Dans les environnements 24/7, 4D prend en charge l'utilisation de systèmes miroirs montés en cascade et/ou en étoile. Une production, un miroir et un miroir secondaire permettent d’assurer un service 24 heures sur 24. Un système de miroir supplémentaire pourrait être exécuté dans une autre ville ou le Cloud pour protéger les données, même en cas de catastrophes extrêmes.
 
-Parallèlement à cela, le système de journalisation transactionnelle de 4D prend en charge les snapshots des machines virtuelles (comme Volume Shadow Copy Service de VMWare vSphere (Hyperviseur ESXi, pris en charge à partir de la version 16 R2).
+Parallèlement à cela, le système de journalisation transactionnelle de 4D prend en charge les snapshots des machines virtuelles (comme [Volume Shadow Copy Service](https://blog.4d.com/enterprise-virtual-machine-snapshot-support/) de VMWare vSphere (Hyperviseur ESXi, pris en charge à partir de la version 16 R2).
 
 <br>
 
@@ -626,7 +636,7 @@ Lire également notre [guide sur la sécurité](https://blog.4d.com/4d-security-
 
 ## Surveillance du serveur
 
-Vous pouvez utiliser le composant « 4D_Info_Report » pour collecter un maximum d'informations :
+Vous pouvez utiliser le [composant « 4D_Info_Report »](/info_report_fr) pour collecter un maximum d'informations :
 
 * sur l'environnement système, matériel, 4D
 
@@ -648,9 +658,9 @@ La zone graphique permet de visualiser l’évolution en temps réel de plusieur
 * l'état de la mémoire.
 
 <br>
-Ces informations peuvent être obtenues par programmation grâce à la commande « LIRE APERCU ACTIVITE ». Cette commande permet d’obtenir un instantané des n opérations les plus coûteuses en temps et/ou les plus fréquentes en cours d’exécution telles que l’écriture du cache ou l’exécution de formules.
+Ces informations peuvent être obtenues par programmation grâce à la commande « [LIRE APERCU ACTIVITE](https://doc.4d.com/4Dv18/4D/18/LIRE-APERCU-ACTIVITE.301-4504929.fr.html) ». Cette commande permet d’obtenir un instantané des n opérations les plus coûteuses en temps et/ou les plus fréquentes en cours d’exécution telles que l’écriture du cache ou l’exécution de formules.
 
-Par défaut, la commande « LIRE APERCU ACTIVITE » traite des opérations effectuées en local (avec 4D monoposte, 4D Server ou 4D en mode distant). Avec 4D en mode distant cependant, vous pouvez également obtenir l’aperçu des opérations effectuées sur le serveur : il suffit pour cela de passer l’étoile (*) en dernier paramètre. Dans ce cas, les données du serveur seront récupérées localement. Le paramètre * est ignoré lorsque la commande est exécutée sur 4D Server ou 4D monoposte.
+Par défaut, la commande « [LIRE APERCU ACTIVITE](https://doc.4d.com/4Dv18/4D/18/LIRE-APERCU-ACTIVITE.301-4504929.fr.html) » traite des opérations effectuées en local (avec 4D monoposte, 4D Server ou 4D en mode distant). Avec 4D en mode distant cependant, vous pouvez également obtenir l’aperçu des opérations effectuées sur le serveur : il suffit pour cela de passer l’étoile (*) en dernier paramètre. Dans ce cas, les données du serveur seront récupérées localement. Le paramètre * est ignoré lorsque la commande est exécutée sur 4D Server ou 4D monoposte.
 
 <br>
-Une nouvelle commande est également apparue en version 4D v16 R4 (modifiée en v16 R5) : « Lire activite process ». Elle retourne une vue instantanée des sessions des utilisateurs connectés  et/ou des process exécutés à un instant précis, y compris les process internes qui n’étaient pas accessibles avec la commande « INFORMATIONS PROCESS ».
+Une nouvelle commande est également apparue en version 4D v16 R4 (modifiée en v16 R5) : « [Lire activite process](https://doc.4d.com/4Dv18/4D/18/Lire-activite-process.301-4505310.fr.html) ». Elle retourne une vue instantanée des sessions des utilisateurs connectés  et/ou des process exécutés à un instant précis, y compris les process internes qui n’étaient pas accessibles avec la commande « [INFORMATIONS PROCESS](https://doc.4d.com/4Dv18/4D/18/INFORMATIONS-PROCESS.301-4505296.fr.html) ».

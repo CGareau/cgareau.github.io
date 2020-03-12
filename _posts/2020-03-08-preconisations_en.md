@@ -1,4 +1,5 @@
 ---
+published: true
 layout: post
 title: Recommendations for your 4D applications
 permalink: /preconisations_en/
@@ -10,646 +11,402 @@ lang-ref: preconisations
 
 ![Best_Practice](/images/Best_practice.png)
 
+## Download
+
+[Download the document in PDF format](/archives/Recommendations_4D_apps.pdf)
+
+<br>
+
 ## Introduction
 
-Voici quelques préconisations et bonnes pratiques, pleines de bon sens, à suivre lorsque vous déployez des applications 4D, agrémentées d'informations techniques.
+This document will be updated regularly and is not meant to be considered as comprehensive. We will be happy to include any contributions you provide us.
 
 <br>
 
-## Applications 4D
+## 4D Applications
 
-**_Recommandé :_**
+**_Recommended:_**
 
-* Utiliser le mode **Unicode**
+* Use Unicode mode
 
-* Utiliser une version **64 bits**
+* Compile the database in multi-target (32- and 64-bit)
 
-* Déployer une application 4D **compilée** ou exécutable en prenant soin de cocher au préalable, dans les propriétés de votre base de données, de :
-    * cocher « Contrôle d'exécution »
-    * cocher « Générer le fichier de symboles »
-    * cocher « Générer le fichier d'erreur »
-    * cocher « Compilation multi-cible (32 bits et 64 bits) »
-    * sélectionner « Toutes les variables sont typées » pour le chemin de compilation
-    * sélectionner « Entier long » pour les numériques
-    * sélectionner « Entier long » pour les boutons
+* Deploy the 64-bit version
 
-* Utiliser des champs UUID pour les clés primaires
-
-* Dessiner les liens entre les tables
-
-* Ne plus utiliser la commande 4D « MODIFIER SELECTION »
-
-* Utiliser les objets
-
-* Utiliser des listbox pour les listes
-
-* Utiliser exclusivement des noms d'objets
-
-* Dans l'onglet « Compatibilité » des propriétés de votre base de données convertie (issue d'une version précédente de 4D), cocher les options :
-    * « Exécuter CHERCHER PAR FORMULE » sur le serveur et « Exécuter TRIER PAR FORMULE sur le serveur »
-    * CHERCHER PAR FORMULE utilise jointures SQL »
+* Build a compiled structure of your application
 
 <br>
 
-## Numéros de port
+## Port numbers
 
-**_Recommandé :_** s'assurer que les ports ci-dessous soient disponibles et dédiés à l'application 4D Server
+**_Recommended:_** make sure that the following ports are unique
 
-* ports obligatoires :
-    * port de publication client/serveur (modifiable dans les propriétés de la base, par défaut **19813**)
-    * port applicatif (non modifiable : port de publication +1, par défaut **19814**)
-    * port pour le serveur SQL (modifiable dans les propriétés de la base, par défaut **19812** ; même si vous n'utilisez pas le langage SQL, 4D vérifiera au démarrage si ce port est libre)
+* mandatory ports:
 
-* ports facultatifs :
-    * ports pour le serveur Web, utilisés pour les requêtes Web, SOAP ou REST (modifiables dans les propriétés de la base, par défaut **80** (HTTP) et **443** (HTTPS)) 
-    * port pour l'interpréteur PHP (modifiable dans les propriétés de la base, par défaut **8002** sur l’adresse 127.0.0.1)
-    * d'autres ports peuvent également être utilisés par 4D, notamment par le plugin 4D Internet Commands
+    * client/server publication port (modifiable in database settings, by default it is **19813**)
 
-<br>
-Vous pouvez modifier les ports utilisés par 4D, par défaut. Cependant attention certains ports sont utilisés ou réservés pour d'autres applications :
+    * application port (not modifiable, pubication port +1 so by default it is **19814**)
 
-* 0 à 1023 (Ports réservés) : Ces ports sont affectés par l'I.A.N.A. (Internet Assigned Numbers Authority) et sur la plupart des systèmes ne peuvent être utilisés que par des process système (ou racine) ou par des programmes exécutés par des utilisateurs disposant de privilèges d'accès avancés.
-    * 20 et 21 FTP;
-    * 23 TELNET;
-    * 25 SMTP;
-    * 37 NTP;
-    * 80 et 8080 HTTP;
-    * 443 HTTPS.
+    * SQL server port (modifiable in database settings, by default it is **19812**; even if you do not use the SQL language, 4D will check whether this port is free on startup)
 
- * 1024 à 49151 (Ports enregistrés) : Ces ports sont enregistrés par l'I.A.N.A. et peuvent être utilisés sur la plupart des systèmes par des process utilisateurs ou par des programmes exécutés par des utilisateurs sans privilèges particuliers (routeurs, applications spécifiques...)
+* optional ports:
 
- * 49152 à 65535 (Ports dynamiques et/ou privés) : Ces ports sont d'utilisation libre.
+    * Web server port(s) (modifiable in database settings, by default it is **80** (HTTP) and **443** (HTTPS)) 
 
-<br>
-Les personnes souhaitant utiliser les commandes TCP/IP pour synchroniser des bases de données doivent utiliser des numéros de port supérieurs à 49151.
+    * port for PHP interpreter (modifiable in database settings, by default it is **8002** at the address 127.0.0.1)
 
-Pour de plus amples informations, veuillez visiter le [site Web de l'I.A.N.A.](http://www.iana.org)
+    * other ports can also be used by 4D, more particularly by the [4D Internet Commands plugin](https://doc.4d.com/4Dv18/4D/18/Appendix-B-TCP-Port-Numbers.300-4689600.en.html)
 
 <br>
 
-## Processeur
+## Processor
 
-**_Recommandé :_**
+**_Recommended:_**
 
-* pour les **postes de travail** : 1 CPU avec **2 cœurs minimum**
+* several cores
 
-* pour les **serveurs** : 1 CPU avec **4 cœurs minimum** (plutôt que 2 CPU avec 2 cœurs car la mémoire cache sera partagée entre tous les cœurs)
+* use preemptive mode (available beginning with 4D version v15 R5 - executed in 64-bit compiled mode only)
 
-* utiliser le **mode préemptif** pour tirer intégralement parti des machines multi-cœurs (disponible à partir de la version 4D v15 R5 - exécuté en compilé 64 bits uniquement)
+* explicitly declare all methods that you want to be started in preemptive mode (check the option in the method properties and verify their eligibility using the compiler)
 
-* déclarer explicitement toutes les méthodes que vous souhaitez démarrer en mode préemptif (cocher l'option dans les propriétés de vos méthodes et vérifier leur éligibilité grâce au compilateur)
+Since version v11 SQL, 4D benefits from a system of multiple cores _(*)_. The operating system dispatches the "processor time" (total time of all cores) between each application and between the threads of each application. Then it's the application that sets the priority of each of these threads, with each thread working individually.
 
-<br>
-Depuis la version 4D v11 SQL, 4D tire partie à travers le système des multiples cœurs _(*)_. En effet, le système d’exploitation répartit le « temps processeur » (total du temps de tous les cœurs) entre chaque application et entre les threads de chaque application. C’est ensuite l’application qui définit les priorités de chacun de ses threads, chaque thread travaillant individuellement.
-
-_(*) : Les systèmes supportant le multi-threading permettent de simuler 2 cœurs logiques pour chaque cœur, multipliant ainsi par deux la capacité de traitement de 4D Server._
+_(*): Systems that support multithreading, which allows simulation of 2 logical cores for each core, thus doubling the processing capacity of 4D Server._
  
-Dans 4D, il existe des threads coopératifs et des threads préemptifs. 4D les utilise automatiquement (pas de logiciel ou de préférence spécifique) en fonction du code 4D exécuté.
+On the other hand, in 4D there are cooperative threads and preemptive threads. 4D uses them automatically (no software or specific preference) according to the 4D executed.
+All the cooperative threads function in the main thread unlike preemptive threads which are dispatched by 4D server onto other threads. When run in preemptive mode, a process is dedicated to a CPU. Process management is then delegated to the system, which can allocate each CPU separately on a multi-core machine.
 
-Tous les threads coopératifs fonctionnent dans le thread principal à la différence des threads préemptifs qui sont dispatchés par le serveur 4D sur les autres threads. En effet, lorsqu'il est exécuté en mode préemptif, un process est dédié à un CPU (processeur). La gestion du process est alors déléguée au système, qui peut allouer chaque CPU séparément sur une machine multi-coeurs.
+When run in cooperative mode (the only mode available in 4D until 4D v15 R5), all processes are managed by the parent application thread and share the same CPU, even on a multi-core machine.
 
-Lorsqu'ils sont exécutés en mode coopératif (seul mode disponible dans 4D jusqu'à 4D v15 R5), tous les process sont gérés par le thread (process système) de l'application parente et partagent le même CPU, même sur une machine multi-coeurs.
+As a result, in preemptive mode, overall performance of the application is improved, especially on multi-core machines, since multiple processes (threads) can truly run simultaneously. However, actual gains depend on the operations being executed. Basically, code to be run in preemptive threads cannot call parts with external interactions, such as plug-in code or interprocess variables. Accessing data, however, is allowed since the 4D data server supports preemptive execution.
 
-Par conséquent, en mode préemptif, les performances globales de l'application sont améliorées, particulièrement avec des machines multi-coeurs, car de multiples threads peuvent véritablement être exécutés simultanément. Les gains effectifs dépendent cependant de la nature des opérations exécutées. Fondamentalement, le code destiné à être exécuté dans des threads préemptifs ne peut pas appeler d'éléments ayant des interactions extérieures telles que du code de plug-in ou des variables interprocess. L'accès aux données, cependant, est possible car le serveur de données de 4D prend en charge l'exécution en mode préemptif.
-
-En contrepartie, puisqu'en mode préemptif chaque thread est indépendant des autres et non géré directement par l'application, des conditions spécifiques sont à respecter dans les méthodes qui doivent être exécutées en préemptif. De plus, le mode préemptif est disponible uniquement dans certains contextes.
-
-<br>
-
-`Notes :`
-
-* _Un nouveau type de process, appelé process Worker, vous permet d'échanger des données entre n'importe quel process, y compris des process préemptifs._
-
-* _La nouvelle commande « APPELER FORMULAIRE » fournit une solution élégante permettant d'appeler des objets d'interface depuis un process préemptif._
-
-* _Bien qu'elles aient été conçues principalement pour les besoins liés à la communication interprocess dans le contexte des process préemptifs (accessibles en version 64 bits uniquement), les commandes « APPELER WORKER » et « APPELER FORMULAIRE » sont disponibles dans les versions 32 bits et peuvent être utilisées avec des process en mode coopératif._
-
-Il faut savoir aussi qu’un process non local de 4D Distant communique toujours avec deux threads jumeaux sur le serveur : un thread préemptif pour les requêtes DB4D (créer, stocker, charger, supprimer, trier, chercher, etc.) et un thread coopératif pour les requêtes applicatives (« date du jour(*) », « lire variable process (-1;..) », etc.). Un troisième thread préemptif peut aussi être créé si vous exécutez des commandes SQL (à l’appel à la commande « Debut SQL »).
-
-<br>
-En fonction de la commande exécutée, 4D utilise tel ou tel thread en établissant la communication sur le port correspondant :
-
-* port de publication pour les requêtes DB4D (thread coopératif)
-
-* port applicatif (port de publication +1) pour les requêtes applicatives (thread préemptif)
-
-* port SQL pour les requêtes SQL (thread préemptif)
+In return, since each thread is independent from the others in preemptive mode, and not managed directly by the application, there are specific constraints applied to methods that you want to be compliant with preemptive use. Additionally, preemptive execution is only available in certain specific contexts.
 
 <br>
 
-`En conclusion`, il est très fortement recommandé d'avoir un processeur multi-cœurs même si l'utilisation de tous les cœurs dépendra des commandes 4D utilisées dans votre application en sachant que plus vous êtes préemptif, plus vous serez rapide sur une machine multi-cœurs.
+`Notes:`
 
-`Important :` _si votre application 4D a été créée avec une très ancienne version de 4D, il est possible qu'une zone « Priorités CPU » soit visible dans l'onglet « Général » des propriétés de votre base de données. Ce paramétrage est désormais obsolète. Lorsque la zone est affichée, il est recommandé de cliquer sur le bouton « Réglages d'usine » afin de réinitialiser les paramètres et de les supprimer de la boîte de dialogue._
+* A new type of process, called a Worker, allows you to exchange data with any other process, including preemptive ones.
+
+* The new command "CALL FORM" provides an elegant solution for calling interface objects from a preemptive process.
+
+Although they were principally designed to meet needs related to interprocess communication in the context of preemptive processes (accessible in 64-bit versions only), the "CALL WORKER" and "CALL FORM" commands are available in 32-bit versions and can be use with processes in cooperative mode.
+
+<br>
+ 
+Keep in mind that a 4D Remote non-local process always communicates with two twinned threads on the server: one preemptive thread for DB4D requests (create, save, load, delete, order by, query, etc.) and one cooperative thread for application requests (current date(*), GET PROCESS VARIABLE (-1;..), etc.). A third preemptive thread can also be created if you execute SQL commands (when the "Begin SQL" command is called).
+
+Depending on the command executed, 4D uses a particular thread for establishing communication on the corresponding port:
+
+* publication port for DB4D requests (cooperative thread)
+
+* application port (publication port +1) for application requests (preemptive thread)
+
+* SQL port for SQL requests (preemptive thread)
 
 <br>
 
-## Système d'exploitation
-
-**_Recommandé :_** versions **64 bits** et **certifiées** par 4D
-
-`Important :` _Déployer la **dernière révision** de la version de 4D sur des systèmes d'exploitation certifiés par notre département Qualité. Les pré-requis logiciel et système sont disponibles sur [notre site web](https://fr.4d.com/resources/4d-v18-lts)._
-
-* **_Sous Windows :_**
-
-    * Pour déployer l'application **4D** sur des postes de travail : **Windows 10** ;
-
-        * Pour déployer l'application **4D Server** sur un serveur ou l'application **4D** sur un serveur d'applications :
-            * **Windows Server 2016**,
-            * **Windows Server 2019** ;
-
-        * Déployer l'application 4D Server sur une machine dédiée (sous Windows Server, désactiver tous les rôles, notamment le rôle serveur de fichiers installé par défaut) ;
-
-        * Déployer la gamme 64 bits :
-            * 4D Server est disponible en version 64 bits à partir de la version v12,
-            * 4D est disponible en version 64 bits à partir de la version v16 (en version Preview en 16.0 puis dans les versions 16 Rx) ;
-
-        * Pour des raisons de performances, nous vous invitons également à désactiver la stratégie de sécurité locale "Client réseau Microsoft : [communications signées numériques](https://docs.microsoft.com/fr-fr/windows/security/threat-protection/security-policy-settings/microsoft-network-client-digitally-sign-communications-always) (lorsque le serveur l'accepte)" dans les options de sécurité, qui diminue de 15% les performances lorsqu'elle est active ;
-
-        * Les paramètres par défaut des ordinateurs sous Windows et Windows Server sont optimisés pour économiser l'énergie. Il s'agit du meilleur réglage pour une utilisation bureau. Cependant un réglage sur « **performances élevées** » pour les serveurs permet d’obtenir des performances jusqu'à deux fois supérieures au mode « normal ».
+`In conclusion`, we strongly recommend having a multi-core processor even if the use of all the cores depends on the 4D commands used in your application keeping in mind that the more preemptive you are, the faster you will be on a multi-core machine.
 
 <br>
 
-* **_Sous Mac :_**
+## Operating system
 
-    * Pour déployer les applications **4D** ou **4D Server** :
+**_Recommended:_** 64-bit OS certified by 4D
+
+Important: You must deploy 4D on an OS certified by our Quality Assurance department. The certification matrices are available on [our web site](https://us.4d.com/resources/4d-v18-lts).
+
+
+* **_Under Windows:_**
+
+    * For **4D** opt for **Windows 10**;
+    
+    * For **4D Server** or your TSE servers, opt for **Windows Server 2016** or for **Windows Server 2019**;
+
+    * Deploy 4D Server on a dedicated machine (under Windows Server, uninstall all the roles, particularly the file server role that is installed by default);
+
+    * Deploy the 64-bit product range:
+
+        * 4D Server is available in a 64-bit version starting with version v12,
+
+        * 4D Developer is available in a 64-bit version starting with version v15 R5;
+
+    * For performance reasons, we also recommend that you disable the local security strategy "Microsoft network client: [digitally sign communications](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/smbv1-microsoft-network-server-digitally-sign-communications-always) (if server agrees)" in the security options, which reduces performance by up to 15% when it is enabled.
+
+* **_Under Mac:_**
+
+    * For **4D** or **4D Server**:
         * macOS **Mojave (10.14)**,
-        * macOS **Catalina (10.15)** ;
+        * macOS **Catalina (10.15)**;
 
-    * Déployer la gamme 64 bits :
-        * 4D Server est disponible en version 64 bits à partir de la version v15,
-        * 4D est disponible en version 64 bits à partir de la version v16.
+    * Deploy the 64-bit product range:
 
-<br>
+        * 4D Server is available in a 64-bit version starting with version v15.1,
 
-* **_Résolution d’écran :_**
-
-    * Les dialogues en 4D, tel que l’éditeur de recherches, nécessitent une résolution d’écran minimale de **1280 x 1024 pixels** ;
-
-    * Selon le code de l'application 4D utilisé, les applications peuvent demander des résolutions plus petites (par exemple pour les appareils mobiles) ou plus grandes (par exemple, les grands écrans et les écrans à haute résolution).
-
-<br>
-Les versions 64 bits permettent aux applications 4D monopostes ainsi qu'aux applications 4D distantes de tirer pleinement parti des systèmes d'exploitation 64 bits. Le principal avantage de l'architecture 64 bits est qu'une mémoire de taille plus importante peut être adressée.
-
-Bien que largement réécrites, les applications 4D 64 bits sont hautement compatibles avec les bases 4D courantes. Toutefois, étant donné qu'elles utilisent les technologies les plus récentes, nous avons dû mettre à jour quelques fonctions, et en arrêter d'autres.
-
-D'un autre côté, l'implémentation de l'architecture 64 bits nous a donné l'opportunité de prendre en charge des fonctionnalités puissantes comme les process 4D préemptifs (multithread), de moderniser les impressions ainsi que les d'éditeurs d'états rapides et d'étiquettes, ou encore de faire bénéficier vos applications des animations d'objets natives (4D 64 bits sous OS X).
+        * 4D Developer is available in a 64-bit version starting with version v15 R5.
 
 <br>
 
-## Mémoire
+64-bit versions allow your 4D stand-alone applications, as well as your 4D remote applications, to take full advantage of the power of 64-bit operating systems. The main advantage of 64-bit architecture is that more RAM can be addressed.
 
-**_Recommandé :_**
-
-* pour les **postes de travail** : **8 Go minimum**
-
-* pour les **serveurs** : **16 Go minimum**
-
-* **ECC** (technologie de correction d'erreurs)
-
-<br>
-La mémoire allouée à l'application 4D Server dépend de 4 facteurs :
-
-* la quantité de mémoire totale sur votre machine,
-
-* la quantité de mémoire disponible,
-
-* du système d'exploitation (32 ou 64 bits),
-
-* de la version de 4D Server utilisée (32 ou 64 bits).
-
-<br>
-Pour information, il n'est pas possible d'avoir un cache inférieur ou égal à 100 Mo. De toute façon le cache est un élément important, il faut donc réserver une quantité de mémoire suffisante (après calcul de la mémoire nécessaire pour les process, etc.) au cache de 4D.
-
-* L'espace mémoire réservé au cache est séparé de l’espace mémoire utilisé par le serveur pour les process. Effectivement le fait d'augmenter la taille du cache diminue l'espace réservé aux process.
-
-* La taille maximale varie en fonction du nombre d'utilisateurs connectés et du nombre de process par utilisateur. Cependant 1 Go environ est par défaut utilisé par 4D (en dehors des process), notamment pour charger toutes les librairies systèmes.
-
-* La gestion du cache a été améliorée. En particulier, un nouveau mécanisme effectue les opérations les plus consommatrices dans la mémoire temporaire, ce qui permet d’alléger le cache principal. La mémoire temporaire a pour avantage de n’être utilisée qu’en cas de besoin et ne mobilise pas les ressources de la machine. Nous vous invitons à calculer la mémoire nécessaire au bon fonctionnement de 4D Server, et ensuite de la déduire de la mémoire totale allouée par le système à 4D. Vous pourrez ainsi en déduire la taille de cache maximale que vous pouvez allouer. Une taille de cache excessive risque d’ailleurs de diminuer les performances générales du système, voire de le rendre instable.
-
-* Pour connaître le taux de réussite il faut observer les variations de la mémoire cache observée. Lorsque vous observez une diminution du cache utilisé, cela signifie que 4D a eu besoin de supprimer des objets afin de libérer de la mémoire pour certains objets du moteur de données. Si le cache est purgé encore et encore, c'est une bonne analyse qui indique que le cache est trop petit. Dans ce cas, 4D a besoin de purger de manière répétée un quart de son cache dans le but de libérer assez de place pour les objets du moteur de données.
-
-* La gestion du cache doit être laissé aux soins de 4D, seules la taille du cache et la fréquence d'écriture du cache sont importantes désormais. Nous vous conseillons de ne pas utiliser la commande « ECRIRE CACHE » par exemple, il est préférable d'utiliser l'option « Écriture cache toutes les 20 secondes », qui spécifie les intervalles de sauvegarde des données, afin de contrôler l'écriture du cache de données sur le disque. 4D utilise en interne un système intégré de cache de données permettant d'accélérer les opérations d'Entrée/Sortie. Le fait que des modifications de données soient, par moment, présentes dans le cache de données et pas sur le disque, est entièrement transparent pour votre code. Par exemple, si vous appelez la commande « CHERCHER », le moteur de 4D va intégrer les données présentes dans le cache pour effectuer l'opération.
-
-<br>
-Nous vous conseillons :
-
-* de ne pas cocher l’option « Calcul du cache adaptatif » afin de fixer une taille de cache fixe ;
-
-* de décocher, sous Mac, l'option « Maintenir le cache en mémoire physique » ;
-
-* prévoir suffisamment de mémoire dans la machine pour le cache, la mémoire moteur de 4D Server et le système d'exploitation lui-même ;
-
-* déployer la version 64 bits de 4D Server (une application 32 bits ne peut pas utiliser plus de 4 Go de mémoire, une application 64 bits dispose quant à elle de 8 To d'espace adressable théorique !) ;
-
-* déterminer la valeur idéale du cache pour votre base en production en utilisant le [composant « 4D_Info_Report »](http://taow.4d.com/Outil-4D-Info-Report/PS.1938271.fr.html).
-
-(Prévoir des slots de libre si le fichier de données est amené à grossir rapidement pour rajouter de la mémoire par la suite)
-
-<br>
-Le gestionnaire du cache de la base de données a été entièrement réécrit en 4D v16 et améliore ainsi l'utilisation d'un cache très important pour les ordinateurs modernes (avec 64 ou même 128 Go de cache) permettant de profiter des faibles prix des barrettes mémoire et permettant ainsi de stocker une base de données de grande taille entièrement en mémoire. Il améliore également les situations où le cache est de petite taille alors que le fichier de données est très volumineux grâce à une meilleure gestion des priorités pour les objets de données à contenir ou à libérer du cache.
-En conséquence, la base de données sera plus rapide, permettant de gérer plus de données et plus d'accès utilisateurs simultanés.
-
-<br>
-Enfin, depuis la v16, le cache peut être configuré ou analysé dynamiquement avec les commandes suivantes :
-
-* La commande « ECRIRE CACHE » accepte désormais un paramètre * pour vider le cache ou un nombre d'octets minimum de libération du cache (uniquement pour effectuer des tests)
-
-* La commande « FIXER TAILLE CACHE » fixe dynamiquement la taille du cache de la base de données dans les versions 64 bits de 4D
-
-* La commande « Lire informations cache » récupère des informations relatives à l’utilisation du cache en 64 bits
-
-* La commande « Lire taille cache » retourne la taille courante du cache
-
-* Le sélecteur « Périodicité écriture cache » de la commande « FIXER PARAMETRE BASE » permet de lire ou de fixer la périodicité de l'écriture du cache sur le disque
-
-<br>
-Dans les versions 64 bits de 4D, le cache des données de la base inclut un mécanisme de gestion automatique des priorités offrant un haut niveau d'efficacité et de performance. Ce mécanisme permet d'optimiser la rotation des données dans le cache lorsque le programme a besoin de place : les données de plus faible priorité sont déchargées en premier, tandis que les données de priorité plus haute restent chargées.
-
-Ce mécanisme est entièrement automatique et la plupart du temps, vous n'aurez pas besoin de vous en préoccuper. Cependant, pour des cas particuliers, il peut être personnalisé à l'aide d'un ensemble de commandes dédiées, vous permettant de changer la priorité des objets pour toute la session ou uniquement le process courant. A noter que ces commandes doivent être utilisées avec précaution car elles peuvent affecter les performances de la base.
-
-Le gestionnaire du cache sélectionne les données à retirer du cache en cas de besoin à l'aide d'un système de priorité. Les trois types d'objets qui peuvent être chargés dans le cache ont une priorité différente :
-
-* tables : toutes les données standard des champs (numériques, dates...), à l'exclusion des blobs (voir ci-dessous). Priorité par défaut : moyenne
-
-* blobs : toutes les données binaires des champs (textes, images, objets et blob) stockées dans le fichier de données. Priorité par défaut : faible
-
-* index : tous les index de champs simples, y compris les index de mots-clés et les index composites. Comme les index sont utilisés très fréquemment, ils ont un statut spécial dans le cache. Priorité par défaut : élevée
-
-<br>
-Les priorités par défaut assurent généralement des performances optimales. Cependant, dans certains cas spécifiques, vous pouvez avoir besoin de personnaliser ces priorités. Pour cela, vous disposez de deux ensembles de commandes 4D :
-
-* Les commandes qui modifient les priorités du cache pour l'ensemble de la session et tous les process : « FIXER PRIORITE CACHE TABLE », « FIXER PRIORITE CACHE INDEX » et « FIXER PRIORITE CACHE BLOBS ». Ces commandes doivent être appelées au démarrage de la base.
-
-* Les commandes qui modifient les priorités du cache pour le process courant uniquement : « AJUSTER PRIORITE CACHE TABLE », « AJUSTER PRIORITE CACHE INDEX » et « AJUSTER PRIORITE CACHE BLOBS ». Utilisez ces commandes si vous souhaitez changer temporairement la priorité des objets dans le cache afin d'améliorer les performances lors d'une opération temporaire, puis revenir aux priorités initiales. 
-
-<br>
-Ces commandes sont disponibles uniquement dans les contextes suivants :
-
-* 4D version 64 bits
-
-* 4D Server ou 4D en mode local
+Although widely rewritten, 4D 64-bit applications are highly compatible with the current 4D databases. However, since they use the most recent technologies, we needed to update some features, as well as to stop supporting others. All these evolutions are detailed in the Differences in the 64-bit releases section.
+On the other hand, implementing the 64-bit architecture provided us with the opportunity to support new, powerful features such as the ability to handle multithreading processes, OS-based printing architecture or cutting-edge Quick Report and Label editors.
 
 <br>
 
-## Disque dur
+## Memory
 
-**_Recommandé :_**
+**_Recommended:_**
 
-* Un système de disques **SSD** ultra performant avec RAID 10 matériel (avec une carte contrôleur **RAID**, de type PERC par exemple) pour stocker la base de données 4D
+* provide enough memory in the machine for the cache and engine memory of 4D Server + the operating system itself
 
-* Un disque SSD de secours (si un des disques du système RAID tombe en panne)
+* deploy the 64-bit version of 4D Server (a 32-bit application cannot use more than 4 GB of memory whereas a 64-bit application has 8 TB of theoretical address space!)
 
-* Un disque de capacité suffisante pour le fichier d'historique courant et les jeux de sauvegardes (4BK et 4BL)
+* determine the ideal cache value for your database in production by using the ["4D_Info_Report" component](/info_report_en/)
 
-* Restituer de temps en temps la dernière sauvegarde (4BK) sur une autre machine et effectuer une vérification des données avec l’outil intégré (CSM) dans 4D. Cette action peut être automatisée (nécessite un peu de développement)
-
-<br>
-`Attention` : il est préférable de s'intéresser aux vitesses d'écriture et de lecture avant d'acheter un disque SSD.
-
-<br>
-L'idéal serait de pouvoir y stocker le système, 4D Server et l'intégralité de la base de données.
-
-<br>
-Ne négligez pas l'achat d'un disque de secours (pour garantir la protection du système RAID) :
-
-* Lorsqu’un disque est défectueux : il n’y a plus aucune protection tant que ce disque n’est pas réparé.
-
-* Lorsque deux disques sont défectueux : le système s’arrête.
-
-<br>
-Cela signifie :
-
-* qu’il faut surveiller le disque, et ne pas faire une confiance aveugle au RAID,
-
-* que ce n’est pas le jour où vous êtes confronté à un souci qu’il faut commander le disque de remplacement. En effet, le chef capable d’acheter sera alors indisponible, voir le produit sera en rupture de stock chez le fournisseur… Bref, vous vous retrouverez alors dans une situation où un second disque de la même marque, de la même série et probablement du même lot n’aura qu’une envie : se mettre au repos comme son petit frère !
-
-<br>
-Pour améliorer la tolérance aux pannes, la sécurité et/ou les performances de l'ensemble, la mise en place d'un système RAID est un très bon choix :
-
-* pour la base de données : le meilleur choix est le RAID 10 (sécurité et performances),
-
-* pour les sauvegardes : le meilleur choix est le RAID 5 (prix et sécurité).
-
-<br>
-Vous trouverez ci-dessous un comparatif des différents niveaux de RAID suivi des types de système RAID. Ce tableau n'a pas été réalisé par 4D mais je trouve qu'il résume bien ce qu'il faut savoir sur le RAID.
+_(Plan to leave some free slots if the data file is likely to grow rapidly so that you can add additional memory if needed)_
 
 <br>
 
-## Sauvegarde / Opérations de maintenance
+## Hard disk
 
-**_Recommandé :_**
+**_Recommended:_** 1 high-performance SSD disk to store the 4D database + 1 high-capacity disk for backups
 
-* Dans les propriétés de la base, onglet « Périodicité » :
-    * Activer la **sauvegarde automatique** de 4D (une fois par jour)
+`Warning:` you must look at read and write speeds before purchasing the SSD disk. It's better to get a smaller but high-performance disk.
+Ideally, you would be able to store the system, 4D Server and the database on it.
 
-    * Dans les propriétés de la base, onglet « Configuration » :
-        * Cocher « Fichier de données »
-        * Cocher « Fichier de structure »
-        * Cliquer sur le bouton « Ajouter fichier » et sélectionner :
-            * le fichier d'index des données « .4DIndx »
-            * les 2 fichiers « .4DSyncData » et « .4DSyncHeader » (si vous utilisez le mécanisme de réplication de 4D)
-        * Renseigner l’emplacement des fichiers de sauvegarde et vérifier que l’espace libre est suffisant pour stocker tous les fichiers de sauvegarde
-        * Cocher l’option « **Utiliser le fichier d’historique** »
-
-* Dans les propriétés de la base, onglet « Sauvegarde & restitution » :
-    * Cocher l’option « Conserver les X derniers fichiers de sauvegarde »
-    * Choisir l’option « Effacer la sauvegarde la plus ancienne après sauvegarde »
-    * Cocher « Réessayer dans 60 secondes »
-    * Décocher l'option « Annuler l'opération au bout de X tentatives »
-    * Cocher l’option « Restituer la dernière sauvegarde si la base est endommagée »
-    * Cocher l’option « Intégrer le dernier historique si la base est incomplète »
-
-* Vérifier et compacter le fichier de données régulièrement (depuis la v13, il est possible de détecter la fragmentation d'une table 4D et donc d'agir en conséquence grâce à la commande « Lire fragmentation table »)
-
-* Fermer la fenêtre d'administration après chaque utilisation
-
-<br>
-Depuis la version v15 R4, nous avons optimisé de façon importante l'algorithme de réindexation globale de la base de données. Tout le processus a été revu, et l'opération peut s'effectuer désormais jusqu'à deux fois plus rapidement.
+A 2nd high-capacity disk is recommended for storing database backups and log files (and also to have a copy of the database in case the SSD disk crashes).
 
 <br>
 
-`Note :` _Une réindexation globale est nécessaire, par exemple, après une réparation de la base de données ou lorsque le fichier .4dindx a été supprimé._
+## Backup / Maintenance operations
 
-<br>
-Comme chaque enregistrement de chaque table indexée doit être chargé en mémoire durant l'indexation, l'optimisation a visé à minimiser les échanges entre le cache et le disque (swaps). L'opération est désormais effectuée séquentiellement sur chaque table, ce qui réduit les besoins en chargement et en déchargement d'enregistrements.
-Idéalement, si le cache était assez grand pour contenir la totalité du fichier de données et des index, le nouvel algorithme de réindexation n'apporterait aucune amélioration. Cependant, la mémoire disponible sur le serveur n'est généralement pas aussi grande. Si le cache est assez grand pour contenir au moins les données et les index de la table la plus volumineuse, alors le nouvel algorithme sera jusqu'à deux fois plus rapide que le précédent.
+**_Recommended:_** RAID + 4D Backup + log file + regular compacting of data file
 
-<br>
-Réaliser des sauvegardes régulières des données est important mais ne permet pas, en cas d’incident, de récupérer les données saisies depuis la dernière sauvegarde. Pour répondre à ce besoin, 4D dispose d’un outil particulier : le fichier d’historique. Ce fichier permet d’assurer la sécurité permanente des données de la base.
-En outre, 4D travaille en permanence avec un cache de données situé en mémoire. Toute modification effectuée sur les données de la base est stockée provisoirement dans le cache avant d’être écrite sur le disque dur. Ce principe permet d’accélérer le fonctionnement des applications ; en effet, les accès mémoire sont bien plus rapides que les accès disque. Si un incident survient sur la base avant que les données stockées dans le cache aient pu être écrites sur le disque, vous devrez intégrer le fichier d’historique courant afin de récupérer entièrement la base.
+We recommend using the backup mechanisms of 4D and that you enable the log file.
 
-Si vous travaillez en environnement virtuel, il est recommandé d'arrêter la base avant d'effectuer un snapshot, pour être certain que toutes les données stockées en mémoire soient écrites dans le fichier de données.
+Performing regular backups of your data is important but when there is an incident, it is does not allow you to recover any data entered since the last backup. In order to meet this need, 4D has a special tool: the log file. This file ensures the permanent security of the data in your database.
 
-En plus de la sauvegarde et du fichier d'historique de 4D, nous vous invitons à planifier régulièrement des opérations de maintenance en vérifiant et en compactant le fichier de données et d'index.
+Moreover, 4D works constantly with a data cache located in memory. Any change made to the data of the database is temporarily stored in the cache before being written to the hard disk. This accelerates the functioning of applications; accessing the memory is much faster than accessing the disk. If an incident occurs in the database before the data in the cache could be written to the disk, you must integrate the current log file in order to fully recover the database.
 
-Une fois votre stratégie de sauvegarde mise en place, nous vous invitons à envisager le pire (incendie, vol) et donc d'effectuer une copie hebdomadaire de la base sur un support inerte dans un autre endroit sécurisé.
+In addition to 4D backups and the log file, we also recommend that you plan regular maintenance operations to compact your data and index files.
 
-<br>
-Dans le cadre d'applications critiques, il est également possible de mettre en place un système de sauvegarde par miroir logique, permettant un redémarrage instantané en cas d'incident sur la base en exploitation. Les deux machines communiquent par le réseau, la machine en exploitation transmettant régulièrement à la machine miroir les évolutions de la base par l'intermédiaire du fichier d'historique.
-De cette façon, en cas d'incident sur la base en exploitation, vous pouvez repartir de la base miroir pour reprendre très rapidement l'exploitation sans aucune perte de données.
+To improve failure tolerance, security and/or overall performance, implementing a RAID system is a very good choice:
 
-<br>
-Les principes mis en œuvre sont les suivants :
+* for databases: the best choice is RAID 10 (security and performance)
 
-* La base de données est installée sur le poste 4D Server principal (poste en exploitation) et une copie identique de la base est installée sur le poste 4D Server miroir.
+* for backups: the best choice is RAID 5 (price and security)
 
-* Un test au démarrage de l’application (par exemple la présence d’un fichier spécifique dans un sous-dossier de l'application 4D Server) permet de distinguer chaque version (en exploitation et en miroir) et donc d’exécuter les opérations appropriées.
-
-* Sur le poste 4D Server en exploitation, le fichier d’historique est segmenté à intervalle régulier à l’aide de la commande « Nouveau fichier historique ». Aucune sauvegarde n’étant effectuée sur le serveur principal, la base de données est en permanence disponible en lecture/écriture.
-
-* Chaque segment de fichier d’historique est envoyé sur le poste miroir, où il est intégré à la base miroir à l’aide de la commande « INTEGRER FICHIER HISTORIQUE ».
-
-<br>
-La mise en place de ce système nécessite la programmation de code spécifique, notamment :
-
-* un minuteur sur le serveur principal pour la gestion des cycles d’exécution de la commande « Nouveau fichier historique",
-
-* un système de transfert des segments de fichier d’historique entre le poste en exploitation et le poste miroir (utilisation de 4D Internet Commands pour un transfert via ftp ou messagerie, Web Services, etc.),
-
-* un process sur le poste miroir destiné à superviser l’arrivée de nouveaux segments de fichier d’historique et à les intégrer via la commande « INTEGRER FICHIER HISTORIQUE »,
-
-* un système de communication et de gestion d’erreurs entre le serveur principal et le serveur miroir.
-
-
-`Attention` : La sauvegarde par miroir logique est incompatible avec les sauvegardes « standard » sur la base en exploitation car l’emploi simultané de ces deux modes de sauvegarde entraîne la désynchronisation de la base en exploitation et de la base miroir. Par conséquent, vous devez veiller à ce qu’aucune sauvegarde, automatique ou manuelle, ne soit effectuée sur la base en exploitation. En revanche, il est possible de sauvegarder la base miroir.
-
-<br>
-Depuis la version v14, il est possible d'activer le fichier d'historique courant sur le poste miroir. Vous pouvez ainsi mettre en place un « miroir de miroir », ou des serveurs miroirs en série. Cette possibilité s'appuie sur la commande « INTEGRER FICHIER HISTORIQUE MIROIR ».
+Once your backup strategy has been set up, we recommend that you consider the worst case scenario (fire, theft) and consider performing a weekly copy of your database on a removable support and storing it in a separate secure location.
 
 <br>
 
-## Réseau
+## Network
 
-**_Recommandé :_**
-
-* Utiliser l'ancienne couche réseau jusqu'à la version v15 R5
-
-* Utiliser la **nouvelle couche réseau** à partir de la version 16.2 publique
-
-<br>
-
-`Attention` : l'ancienne couche réseau n'est pas disponible dans les versions 64 bits de 4D Developer (Windows et Mac) et dans la version 64 bits de 4D Server (Mac uniquement).
-
-<br>
-Il est très important pour 4D Server d'avoir en permanence suffisamment de bande passante pour communiquer avec ses postes distants. Si vous mutualisez la bande passante, il faudra en réserver une partie pour 4D Server.
-En effet, lorsque la bande passante vient à manquer, certains paquets sont perdus et cela provoque inévitablement des erreurs côté Serveur. Si trop d'erreurs réseau surviennent au même moment ou de façon trop fréquence, vous déstabilisez 4D Server.
-
-Sachez également que, si vous utilisez le serveur Web de 4D et que vous désirez séparer le trafic pour des raisons de sécurité et/ou de performances, il est possible de dédier une carte réseau aux utilisateurs de 4D Distant et une autre aux requêtes Web, SOAP ou REST.
+If you use the 4D Web server and you want to separate the traffic for safety reasons, we recommend providing 2 network cards: one for 4D Remote users and the other for Web requests.
 
 <br>
 
 ## Web
 
-**_Recommandé :_**
+**_Recommended:_**
 
-* utiliser une version **64 bits** de 4D
+* use 64-bit version of 4D
 
-* utiliser 4D Server ou 4D en mode local (le mode préemptif n'est pas pris en charge par 4D en mode distant)
+* use 4D Server or 4D in local local (preemptive mode is not supported by 4D in Remote mode)
 
-* déployer une application 4D **compilée** ou exécutable
+* use a compiled database
 
-* avoir le maximum de méthodes bases et méthodes projets relatives au Web confirmées thread-safe par 4D Compiler
+* having a maximum of database methods and projects methods related to Web being confirmed as thread-safe for 4D Compiler
 
-* dans les propriétés de votre base :
+* i*n the database preferences for Web server:
 
-    * cocher l'option "**Utiliser des process préemptifs**" pour activer le mode préemptif,
+    * check the option "Use preemptive processes" to enable this mode
 
-    * cocher l'option "utiliser le cache Web de 4D" et fixer une taille de cache de 524 288 Ko,
+    * check the option "Use the 4D Web cache" and set the cache size to 524 288 Kb
 
-    * fixer à 8 heures le délai de conservation des process inactifs et cocher la case "gestion automatique des sessions" pour que les utilisateurs Web puissent réutiliser le même contexte durant la journée (si vous ne les gérez pas par programmation),
+    * set the Inactive Process Timeout to 8 hours and enable the option "Automatic Session Management" for the users be able to reuse the same context during the day (in case you don't manage them by programming)
 
-    * cocher l'option "utiliser les connexions persistantes".
-
-<br>
-Depuis la version v16, le serveur Web intégré de 4D (en 64 bits uniquement) pour Windows et pour Mac OS X permet de tirer pleinement parti du multi-cœurs en utilisant des process Web préemptifs dans les applications compilées. La plupart des commandes de 4D liées au Web, les méthodes et les URL de la base de données sont thread-safe et peuvent être utilisées en mode préemptif. Vous pouvez configurer votre code lié au Web, y compris les balises HTML 4D et les méthodes base Web, afin qu'il s'exécute simultanément sur le plus grand nombre de cœurs possibles.
+    * check the option "Use Keep-Alive Connections"
 
 <br>
+Since 4D v16, the built-in Web Server (64 bits only) for Windows and for MacOS allow to fully take advantage of the multi-core by using the preemptive Web processes in compiled applications.
 
-## Machine physique ou virtuelle
-
-**_Recommandé :_** machine physique
-
-Même si 4D fonctionne en environnement virtuel et est donc éligible en terme d'exploitabilité, côté performances notre expérience nous montre qu’une machine physique offre de meilleures performances dans le temps à ressources équivalentes.
-
-S’il ne vous est pas imposé de virtualiser le serveur 4D en production, nous vous conseillons dans un premier temps de le déployer sur une machine physique. Puis dans un second temps, de programmer des tests poussés en environnement virtuel. Vous aurez ainsi l’avantage de pouvoir comparer les 2 solutions.
-
-Toutefois, si l’on peut trouver un avantage à la virtualisation c’est la souplesse d’allocation des ressources (CPU, mémoire notamment). Il est possible d’allouer des ressources supplémentaires par la suite, voir même d’allouer des ressources en temps réel, en fonction de l’activité de la machine. Nous avons d'ailleurs un certain nombre de clients qui travaillent avec des environnements virtualisés, de plus en plus d’ailleurs. Nous avons même des clients qui déploient des serveurs TSE virtualisés sur des serveurs lames.
-
-Nous n’avons cependant pas de documents officiels certifiant le fonctionnement de 4D en environnement virtuel ou privilégiant une solution plutôt qu'une autre.
-
-Nous préconisons uniquement de s’assurer que les performances de la machine soient suffisantes en termes de ressources (mémoire, processeur, etc.) ou que le système d’exploitation virtualisé soit certifié avec la version de 4D installée.
-De manière générale les ressources CPU et RAM doivent être un peu plus importantes en environnement virtualisé par rapport à une solution non virtualisée.
-
-De plus les performances observées dépendent grandement du paramétrage de la machine virtuelle (CPU, mémoire, etc.) mais aussi du disque dur et de la carte réseau (caractéristiques, est-elle partagée, dédiée, correctement configurée, etc.), de la solution utilisée, de la version de la solution et du système sur lequel est installé la solution. Pour cette partie je vous invite à consulter les sites et forums des éditeurs de solutions virtualisées ainsi que les études comparatives.
-
-`Remarque :`
-* 4D Server Windows 64 bits inclut une application VSS writer dédiée chargée de gérer automatiquement les requêtes de copie instantanée (snapshot) envoyées par le **Volume Shadow Copy Service** (VSS) de Windows.
-
-* VSS est proposé par Windows Server pour permettre aux logiciels de sauvegarde de capturer des instantanés de fichiers d'applications en cours d'exécution ou de l'intégralité d'un disque dur à un moment donné. Grâce à cette technologie, vous pouvez restaurer une application, notamment une base 4D Server, dans l'état exact où elle se trouvait au moment de la copie. Ce mécanisme requiert que les fichiers de l'application en cours d'exécution soient dans un état cohérent au moment de la copie. Pour cette raison, une application compatible VSS doit installer un service ou une application VSS writer. Ce composant est alors "averti" par le service lorsqu'une copie instantanée est sur le point d'être effectuée et indique au VSS requestor (généralement le logiciel de sauvegarde) comment sauvegarder les fichiers et les données. 
+Most of 4D commands related to Web, methods and URLs, are thread-safe and can be used in preemptive mode.You can set up your code related to Web, including HTML 4D tags and Web based methods, in order to simultaneously execute on as many cores as possible.
 
 <br>
 
-## Marque / Modèle de machine
+## Physical or virtual machine
 
-Nous n'avons pas de préconisations particulières, il faut cependant regarder en détails le matériel qui compose la machine avant de l'acheter afin de s'assurer que les composants soient compatibles entre eux et que ses caractéristiques correspondent à vos attentes et aux préconisations ci-dessus.
+**_Recommended:_** physical machine
+
+Even though we recommend a physical machine for 4D Server, we do have a certain number of clients who work with virtual environments, and their numbers are on the rise. We even have clients who have virtual TSE servers on blade servers. The advantage of this solution is the flexibility for assigning resources (CPU, memory).
+
+However, we do not have official documents certifying the functioning of 4D in a virtual environment.
+ 
+Certain recommendations must therefore be taken into account concerning virtualization such as that of ensuring that machine performance is adequate in terms of resources (memory, processor, etc.) or that the virtual operating system be certified with the version of 4D installed.
+Generally, CPU and RAM resources must be slightly higher in a virtual environment with respect to a non-virtual solution.
+In addition, the performance observed depends largely on how the virtual machine is configured (CPU, memory, etc. but also the network card (characteristics, shared or not, dedicated, correctly configured, etc.)), on the solution used, the version of the solution and the system on which the solution is installed. For this part, we recommend consulting the sites and forums of the virtual solution providers as well as comparative studies.
 
 <br>
 
-## Tests / Recette / Déploiement
+## Manufacturer / Model of machine
 
-Ne déployez pas votre base de données sans l'avoir testé au préalable dans son futur environnement ou dans un environnement similaire (matériel, version de 4D identique, etc.) et surtout dans ses futures conditions d'utilisation (avec le même nombre d'utilisateurs simultanés en utilisant des scénarios de tests Utilisateur).
-Stresser sa base de données pour en connaître les limites, non détectables par l'équipe de développement, vous épargnera bien des soucis en Production et permettra d'optimiser les fonctionnalités les plus utilisées.
-
-Les tests et la recette sont les clés d'un déploiement réussi !
+We have no particular recommendations. However, you must look at the hardware of the machine in detail before purchasing it in order to make sure that its characteristics correspond to your needs as well as to the above recommendations.
 
 <br>
 
-## Sécurité
+## Tests / Acceptance / Deployment
+
+Do not deploy your database without having tested it beforehand in its future environment or in a similar environment (hardware, identical 4D version, etc.) and especially under its future conditions of use (with the same number of simultaneous users or using test scenarios written by the users). Stressing your database in order to know its limits which may not be detectable by the development team will spare you many problems once you are in production and will allow you to optimize the functions that are used the most.
+
+Tests and acceptance are the keys of a successful deployment!
+
+<br>
+
+## Security
 
 [Source](https://blog.4d.com/security-data-protection/)
 
-La sécurité est un sujet important et fondamental pour une base de données ou un système de solution entreprise. Ce chapitre propose un aperçu de la façon dont 4D protège vos données. En fait, la sécurité est la protection des données. Et la protection des données est une vaste zone. Les données doivent être protégées pour les accès indésirables, mais aussi pour la perte. Ceci est un fait important, car la plupart des utilisateurs ne pensent qu'à la protection des utilisateurs non autorisés, pas de protection pour des événements tels que panne de courant, disque dur endommagé, les modifications accidentelles de données et ainsi de suite.
 
-Sécurité et protection des données est une zone très large : cela commence par l’authentification de l’utilisateur, passe par l’accès externe (comme le Web ou le SQL), l’exécution de code indésirable (injection SQL, attaques d'inspection du script), puis les mises à jour de sécurité, de sauvegarde et plus encore.
+Security is an important and fundamental topic for a database or business solution system. This article proposes an overview of how 4D protects your data. In fact, security is about data protection. And data protection is a huge area. Data needs to be protected for unwanted access, but also for loss.This is an important fact, as most users think only about protecting for unauthorized users, not about protection for events such as power failure, damaged hard disk, accidental data modifications and so on.
+
+Security and data protection is a very wide area: it starts by user authentication, goes to external access (such as web or SQL), unwanted code execution (SQL injection, script inspection attacks), then security updates, backup and more.
 
 <br>
 
 **4D Server**
 
-4D Server est un système intégré de développement client / serveur, optimisé pour créer des applications d'entreprise robustes avec un système de base de données intégrée. Bien que 4D peut envoyer des données (avec des normes telles que HTTP, SOAP, ODBC ou OCI) ou peut être accessible à partir de l'extérieur (avec HTTP, SOAP, ODBC / SQL), l'utilisation principale est basée sur le langage de développement interne « 4D », en utilisant un protocole réseau interne et propriétaire pour communiquer entre le client et le serveur.
+4D Server is an integrated Client/Server development system, optimized to build robust business applications with an embedded database system. While 4D can send out data (with standards such as HTTP, SOAP, ODBC or OCI) or can be accessed from the outside (with HTTP, SOAP, ODBC/SQL), the main usage is based on the internal development language “4D”, using an internal, proprietary network protocol to communicate between the business client and the server.
 
-La communication réseau prend en charge le cryptage TLS 1.2, soit à l’aide d’une clé prédéfinie (pas de certificat SSL requis), soit avec un fichier contenant une clé.
+The network communication supports [TLS 1.2 encryption](https://tools.ietf.org/html/rfc5246), either using a predefined key (no SSL certificate required) or alternatively a customer provided key file.
 
-La liaison étroite entre le langage de développement et la communication réseau permet une construction de haut niveau dans le concept de protection, en évitant les scénarios d'attaque typiques tels que l'injection SQL ou des attaques « buffer overflow ».
+The tight binding between development language and network communication allows a high level build in protection concept, avoiding typical attack scenarios such as SQL injection or buffer overflow.
 
-Le langage 4D est un langage puissant et mature, parfaitement conçu pour construire des systèmes d'applications d'entreprise. Il propose plus de 1 500 commandes, couvrant les opérations de base de données (tris, requêtes, créations, transactions et ainsi de suite), l’impression, la communication avec d’autres appareils ou ordinateurs, la gestion des documents, une fenêtre ou une interface utilisateur, et bien plus encore. Jeter un coup d’œil au manuel du langage 4D pour plus de détails.
+The 4D language is a powerful and mature language, perfectly designed to build business application systems. It consists in more than a 1500 commands, covering database operations (order by, query, creating, transactions and so on), printing, communicating with other devices or computers, document management, window or user interface commands and much more. Take a look at the [4D language manual](https://doc.4d.com/4Dv18/4D/18/Liste-alphabetique-des-commandes.902-4504285.fe.html) for more details.
 
-Le langage lui-même est segmenté, même en mode interprété (développement ou prototypage), il n’est jamais exécuté comme une évaluation de texte. En mode production, le langage est compilé et intègre un contrôle automatique de plage de version contre les attaques de type « buffer overflow ».
-
-<br>
-
-**Serveur Web**
-
-4D dispose de son propre serveur HTTP, un puissant serveur multithread pour les contenus statiques et dynamiques. L'intégration étroite a un impact considérable sur la sécurité accrue.
-
-Sans compter une meilleure sécurité du code (voir ci-dessous), ce concept supprime le problème de mise à jour typique oublié. Comme tout est intégré, il n'y a qu'un seul logiciel à mettre à jour. Les solutions habituelles nécessitent une énorme quantité de logiciels à maintenir à jour : PHP, OpenSSL, Apache, NodeJS, etc. Tous ont besoin de mises à jour régulières et il est commun que certaines parties restent non patchées pendant longtemps, en particulier si elles sont utilisées comme solution de service, sans une équipe informatique spécialisée.
-
-Les requêtes web déclenchent du code 4D, qui répondent à la demande au niveau applicatif, pas seulement au niveau de la base de données. L'intégration étroite permet de contrôler toutes les requêtes, utilisant la construction d’autorisations et d’implémentations sur mesure, bien sûr crypté TLS.
-
-Le serveur intégré HTTP permet également des justifications de contrôle fin, par exemple pour un serveur REST.
-
-La version 4D v16 R6 prend désormais en charge Perfect Forward Secrecy (PFS). Cela vous donne le niveau de sécurité le plus élevé pour vos communications, par défaut ! Au delà de la protection qu'il offre, le soutien de PFS augmente également les résultats des tests de vérification SSL, ce qui est excellent pour nos clients. En particulier, ceux qui travaillent avec des informations sensibles.
-
-Le niveau de sécurité par défaut du serveur Web de 4D a été augmenté pour être conforme à certaines fonctions de sécurité réseau (Sécurité App Transport (ATS) sur iOS, par exemple), et permet d'obtenir de meilleurs résultats lors des tests de vérification de sécurité Web (par exemple: SSL Labs).
-
-Pour ce faire, nous avons :
-
-* activé « Perfect Forward Secrecy », et
-
-* désactivé l'algorithme RC4 de la liste de chiffrement.
-
-<br>
-Par conséquent, le serveur Web 4D obtient un « A » dans le classement de SSL Labs, sans qu’aucune action ne soit nécessaire !
-
-Perfect Forward Secrecy (PFS) est un algorithme d'échange de clés. Il utilise les algorithmes Diffie-Hellman (DH) pour générer des clés de session de telle sorte que seuls les deux parties impliquées dans la communication peuvent les obtenir.
-
-4D active automatiquement PFS lorsque TLS est activé sur le serveur. Pour cela, 4D génère un fichier
-« dhparams.pem » - si il n'existe pas déjà - qui contient la clé privée de votre serveur DH. Si vous utilisez la liste de chiffrement standard de 4D, PFS est prêt à l'emploi. Si vous préférez utiliser une liste de chiffrement personnalisé, vérifiez qu'il contient des entrées avec des algorithmes de ECDH ou DH.
-
-Pour savoir si PFS est activé sur votre serveur Web, exécutez la commande « WEB Get server info » avec le nouvel attribut « perfectForwardSecrecy ». Cela permet de vérifier si toutes les conditions nécessaires pour utiliser PFS sont remplies :
-
-* TLS est activé
-
-* La liste de chiffrement contient au moins un algorithme ECDH ou DH
-
-* Le fichier « Dhparams.pem » est présent et valide
-
-* Tous les certificats SSL / TLS sont présents
-
-<br>
-L'algorithme RC4 a connu des problèmes de sécurité et est maintenant déprécié dans le serveur Web de 4D. Tous les chiffrements RC4 ont été retirés de la liste de chiffrement par défaut et le modèle « !RC4 » a été ajouté à la liste de chiffrement pour l’interdire explicitement.
+The language itself is tokenized, even in interpreted (development or prototyping) mode, it is never executed as text evaluation. In production mode the language is compiled, with automatic range checking protection for buffer overflow attacks.
 
 <br>
 
-**Serveur SOAP**
+**4D Web Server**
 
-Similaire au serveur HTTP, un serveur SOAP est intégré, ce qui permet un contrôle détaillé d'accès, basé sur des objets métiers (pas seulement au niveau de la base de données).
+4D feature its [own build-in HTTP Server](https://doc.4d.com/4Dv18/4D/18/Web-Server-Overview.300-4504719.en.html), a powerful, multi-threaded server for both static and dynamic content. The tight integration has a drastic impact on increased security.
+
+Beside better code security (see below), this concept removes the typical forgotten update problem. As all is integrated, there is only one software to update (see “Software Update Section” for additional details). Normal solutions requires a huge amount of software packages to update: from PHP, OpenSSL, Apache, NodeJS and so on… All needs regular updates and it is common that some parts stay unpatched for a long time, especially if used as department solution, without a specialized IT team.
+
+Web requests triggers 4D code, which responds to the request on business application level, not just on database level. The tight integration allows to control every request, using build in authorization or customized implementations, of course TLS encrypted.
+
+The build-in HTTP Server also allows fine control justifications, by example for a REST Server.
+
+<br>
+4D v16 R6 now supports Perfect Forward Secrecy (PFS). This gives you the highest security rate for your communications, by default! Beyond the protection it offers, the support of PFS also inscreases the SSL verirication tests results, which is excellent for our customers. In particular, for the customers working with sensitive information.
+
+The default security level of the 4D Web Server has been increased to comply with certain network security functions (App Transport Security (ATS) on iOS for example), and allows to get better results for Web Security verification tests (for ex. SSL Labs).
+So we have:
+
+* enabled « Perfect Forward Secrecy » and
+
+* disabled the RC4 algorithm from the ciffer list
+
+<br>
+Therefore, the 4D Web Server gets an "A" in the SSL Labs rating, with no need of any action!
+
+Perfect Forward Secrecy (PFS) is a key exchange algorithm. It uses Diffie-Hellman (DH) algorithms to generate session keys and only the two parts implied in the communication can get them.4D automatically enables PFS when TLS is activated on the server. For this 4D generates a « dhparams.pem » file -- if it does not exist yet -- containing the private key of your DH server. If you use the 4D standard ciffer list, PFS is ready to use. If you prefer to use a custom cipher list, check that it contains entries with ECDH or DH algorithms.
+
+To know if PFS is enabled on your Web Server, execute the command « WEB Get server info » with the new attribute « perfectForwardSecrecy ». This allows to check if all needed conditions to use PFS are met:
+
+* TLS is enabled
+
+* The cipher list contains at least one ECDH or DH algorithm
+
+* The « Dhparams.pem » file exists and is valide
+
+* All SSL/TLS certificates are present
+
+The RC4 algorithm has had security issues and is now deprecated in 4D Web Server. All RC4 encryptions have been removed from the default ciffer list and the RC4 and the "!RC4" model has been added to this list to explicitly exclude it.
 
 <br>
 
-**Serveur SQL**
+**SOAP Server**
 
-Alors que l’accès aux données pour un client 4D utilise par défaut un protocole propriétaire, l’accès SQL (natif ou via ODBC) est aussi bien pris en charge. En outre, il existe des drivers PDO Open Source disponibles (PHP Data Objects). L’accès SQL au niveau base de données peut être contrôlé par un système de mot de passe, des schémas SQL ou à l’aide de vues SQL.
-
-<br>
-
-**Système de mot de passe 4D**
-
-Le système propriétaire d'autorisation d’accès utilisateur de 4D peut être remplacé par des systèmes tiers. 4D prend en charge l'utilisation directe de Microsoft Active Directory et LDAP, ainsi que des systèmes entièrement personnalisés.
+Similar as the HTTP Server, a [SOAP Server](https://doc.4d.com/4Dv16/4D/16.6/Web-Services-Server-Commands.300-4445828.en.html) is built-in, allowing detailed access control, based on business objects (not just database level).
 
 <br>
 
-**Mécanisme de mise à jour logicielle**
+**4D SQL Server**
 
-Les logiciels modernes sont une combinaison complexe de logiciels, serveur de base de données, middleware, serveur d'applications, serveur web et bien plus encore. Il est facile d'oublier de garder toutes les pièces à jour, comme une DLL d’OpenSSL par exemple. 4D réduit ce problème à bien des égards, non seulement en aidant l'administrateur dans sa vie quotidienne, mais aussi en réduisant le risque par la conception.
-
-Tout étant intégré en une seule solution, il n'y a qu'un seul dossier à remplacer. Tout est installé dans un seul dossier, il pourrait même être remplacé par un processus de glisser-déposer. Faire simple évite le syndrome « je le ferai plus tard ». Avec un seul remplacer, toutes les parties de l'application métier sont mises à jour en une seule étape, rien ne peut manquer.
-
-Le serveur peut être mis à jour automatiquement. Le processus de mise à jour est contrôlé et forcé par 4D lui-même, il peut donc être piloté par le développeur de la solution.
+While data access for 4D Remote by default goes through a property protocol, SQL access (natively or via ODBC), is supported as well. In addition, there are open source [PDO (PHP Data Objects)](https://www.php.net/manual/en/intro.pdo.php) drivers available. SQL access to the database level can be controlled with password system, SQL schemas and fine controlled using [SQL views](https://doc.4d.com/4Dv18/4D/18/CREATE-VIEW.300-4650816.en.html).
 
 <br>
 
-**Système de sauvegarde et de journalisation**
+**4D's build-in password system**
 
-4D fournit par défaut un système de journalisation transactionnelle. Chaque opération de modification de données est enregistrée et peut être annulée. En cas d'urgence, le travail de la journée peut être restaurée - rien n’est perdu. Dans le cas d'une interruption, la base de données est automatiquement vérifiée lors du redémarrage et les opérations manquantes (conservées en mémoire mais non stockées sur le disque encore) sont restaurées, afin d'avoir une base de données contenant toutes les informations. Même dans le cas d'une corruption totale des données (endommagement du disque, etc.), le fichier de données est automatiquement restauré à partir de la dernière sauvegarde complète et le fichier d’historique (contenant le travail quotidien) est intégré.
-
-Le journal des transactions peut également être utile en cas de suppression accidentelle (ou volontaire d'enregistrements) et, à la fois pour la récupération légale des données.
-
-La sauvegarde standard fait partie du produit 4D, aucune licence supplémentaire n’est nécessaire, seul un disque dur additionnel est vivement conseillé (pour se protéger des pannes de disque).
-
-Dans les environnements 24/7, 4D prend en charge l'utilisation de systèmes miroirs montés en cascade et/ou en étoile. Une production, un miroir et un miroir secondaire permettent d’assurer un service 24 heures sur 24. Un système de miroir supplémentaire pourrait être exécuté dans une autre ville ou le Cloud pour protéger les données, même en cas de catastrophes extrêmes.
-
-Parallèlement à cela, le système de journalisation transactionnelle de 4D prend en charge les snapshots des machines virtuelles (comme Volume Shadow Copy Service de VMWare vSphere (Hyperviseur ESXi, pris en charge à partir de la version 16 R2).
+4D’s build-in user authorization system can be replaced by 3rd party systems. 4D supports the direct usage of [Microsoft Active Directory and LDAP](https://blog.4d.com/single-sign-on-sso/), as well as fully customized systems.
 
 <br>
 
-**Protection additionnelle**
+**Software update mechanism**
 
-Tous les concepts de protection standard, tels que la protection de la salle Serveur ou l’utilisation de disques durs cryptés (solutions matérielles avec SSD chiffré ou utilisation de logiciel crypté comme Bitlocker) sont bien sûr recommandés.
+Modern software might be a complex combination of software products, database server, middleware, application server, web server and more. It’s easy to forget to keep all the pieces up-to-date, like an OpenSSL DLL for instance. 4D reduces this problem in many ways, not just helping the admin with his daily life but reducing the risk by design.
+
+As integrated all in one solution, it is only one folder to replace. Everything is installed in a single folder, it could be even replaced with a drag&drop process. Making it simple avoids the “I’ll do it later” syndrome. With a single replace, all parts of the business application is updated in one step, nothing can be missed.
+
+The server can be updated fully automatically. The update process is neither controlled nor forced by 4D itself, it is fully in the hand of the developer of the solution.
+
+<br>
+
+**Backup and journaling system**
+
+4D provides out of the box a transactional-based journaling system. Every single data modification operation is logged and can be rolled back. In case of an emergency case, the work of the day can be restored – nothing is lost. In case of an interruption, database is automatically checked on restart and missing operations (kept in memory, not stored to disk yet) are restored, to have the database back with all information. Even in case of a total data corruption (bad disk, etc…), the data file is automatically restored from last full backup and the journal including the daily work is integrated.
+
+The transaction journal can also be useful in case of accidental deletion (or sabotage record manipulation) as well, both for forensic and data recovery.
+
+Standard backup is part of the 4D product, no additional licensing is required, just an additional hard disk is needed (to protect for disk failures).
+
+In 24/7 environments, 4D supports the usage of cascaded and/or star mirror systems. A production, a mirror and a secondary mirror builds a cluster of systems to provide services around the clock. An additional mirror system could be run in another city or cloud to protect the data even in extreme disasters.
+
+In parallel to transactional-based journaling 4D supports snapshots of virtual machines as well ([VSS Writer](https://blog.4d.com/enterprise-virtual-machine-snapshot-support/)).
 
 <br>
 
-Lire également notre [guide sur la sécurité](https://blog.4d.com/4d-security-guide/)
+**Additionnal protection**
+
+All standard protection concepts, such as server room protection or using encrypted hard disks (hardware solutions like encrypted SSD or software solution like Bitlocker) are of course **_Recommended_** as well.
+
+[Please also see our Security Guide](https://blog.4d.com/4d-security-guide/)
 
 <br>
 
-## Surveillance du serveur
+## Server monitoring
 
-Vous pouvez utiliser le composant « 4D_Info_Report » pour collecter un maximum d'informations :
+You can use the [« 4D_Info_Report » component](/info_report_fr) to get usefull information :
 
-* sur l'environnement système, matériel, 4D
+* regarding the system, hardware and 4D environment
 
-* sur la base : structure, données, triggers, index, réglages personnalisés utilisés, etc.
+* regarding the databse: structure, data, triggers, indexes, custom settings used,...
 
-* en temps réel : mémoire, cache, utilisateurs connectés, process, etc.
-
-<br>
-Ce composant peut être utilisé en Production sans problème : l’impact sur les performances de l’application monitorée est négligeable.
-
-Vous pouvez également utiliser l’onglet « Moniteur » de la fenêtre d’administration de 4D Server  pour afficher des informations dynamiques relatives à l’exploitation de la base de données ainsi que des informations sur le système et l’application 4D Server.
-
-La zone graphique permet de visualiser l’évolution en temps réel de plusieurs paramètres :
-
-* le taux d’utilisation des processeurs,
-
-* le trafic réseau,
-
-* l'état de la mémoire.
+* in real time: memory, cache, connected users, processes,...
 
 <br>
-Ces informations peuvent être obtenues par programmation grâce à la commande « LIRE APERCU ACTIVITE ». Cette commande permet d’obtenir un instantané des n opérations les plus coûteuses en temps et/ou les plus fréquentes en cours d’exécution telles que l’écriture du cache ou l’exécution de formules.
+This component can be used in production: the impact on performances of the monitored application is meaningless.
 
-Par défaut, la commande « LIRE APERCU ACTIVITE » traite des opérations effectuées en local (avec 4D monoposte, 4D Server ou 4D en mode distant). Avec 4D en mode distant cependant, vous pouvez également obtenir l’aperçu des opérations effectuées sur le serveur : il suffit pour cela de passer l’étoile (*) en dernier paramètre. Dans ce cas, les données du serveur seront récupérées localement. Le paramètre * est ignoré lorsque la commande est exécutée sur 4D Server ou 4D monoposte.
+You can also use the "Monitor" tab of the 4D Server Administration Window to display dynamic information related to the database usage as well as information on the system and the 4D application.
+The graph area allows to watch the evolution in real time of several parameters:
+
+* the rate of used processes,
+
+* the network traffic,
+
+* the memory usage.
 
 <br>
-Une nouvelle commande est également apparue en version 4D v16 R4 (modifiée en v16 R5) : « Lire activite process ». Elle retourne une vue instantanée des sessions des utilisateurs connectés  et/ou des process exécutés à un instant précis, y compris les process internes qui n’étaient pas accessibles avec la commande « INFORMATIONS PROCESS ».
+This information can be returned by programming with the command « [GET ACTIVITY SNAPSHOT](https://doc.4d.com/4Dv18/4D/18/GET-ACTIVITY-SNAPSHOT.301-4504929.en.html) ». This command is used to get a snapshot of the x operations that are most time-consuming and/or run most frequently, such as cache writing or the execution of formulas.
+
+By default, [GET ACTIVITY SNAPSHOT](https://doc.4d.com/4Dv18/4D/18/GET-ACTIVITY-SNAPSHOT.301-4504929.en.html) processes operations performed locally (with 4D single-user, 4D Server or 4D in remote mode). However, with 4D in remote mode, you can also get a snapshot of operations performed on the server: you just need to pass the asterisk (*) as the last parameter. In this case, the server data is recovered locally.
+The * parameter is ignored when the command is executed on 4D Server or 4D single-user.
+
+<br>
+An other new command in 4D v16R4 (modified in v16 R5) is « Get process activity ».
+
+The Get process activity command returns a snapshot of connected user sessions and/or related running processes at a given time. This command returns all processes, including internal processes that were not reachable by the [PROCESS PROPERTIES](https://doc.4d.com/4Dv18/4D/18/PROCESS-PROPERTIES.301-4505296.en.html) command.
