@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.locale }}">
+<html lang="{{ page.lang }}">
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -15,11 +15,28 @@
   <body>
     <header>
       <div class="inner">
-        <a href="{{ "/" | relative_url }}">
+
+      {% if page.lang == 'en' %}
+        <a href="{{ "/index.html" | relative_url }}">
           <h1><img src="/images/4D.gif">  {{site.title }}</h1>
         </a>
-        <h2>Vous trouverez sur ce site quelques documents techniques</h2>
+      {% endif %}
+
+      {% if page.lang == 'fr' %}
+        <a href="{{ "/accueil.html" | relative_url }}">
+          <h1><img src="/images/4D.gif">  {{site.title }}</h1>
+        </a>
+      {% endif %}
+
+      <h2>{{site.description[page.lang] }}</h2>
+
+      {% if page.lang == 'en' %}
         <a href="https://github.com/CGareau/cgareau.github.io" class="button"><small>View project on</small> GitHub</a>
+      {% endif %}
+
+      {% if page.lang == 'fr' %}
+        <a href="https://github.com/CGareau/cgareau.github.io" class="button"><small>Voir le projet sur</small> GitHub</a>
+      {% endif %}
       </div>
     </header>
 

@@ -1,9 +1,11 @@
 ---
 layout: post
 title: Préconisations pour vos applications 4D
-permalink: /recommendations/
+permalink: /preconisations_fr/
 categories: [PROCESS, SUPPORT]
 tags: [recommandations, best, practice, 4D]
+lang: fr
+lang-ref: preconisations
 ---
 
 ![Best_Practice](/images/Best_practice.png)

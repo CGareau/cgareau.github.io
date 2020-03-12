@@ -1,11 +1,18 @@
+# Site settings
 title: Wiki 4D
 email: service4D@4d.com
-show_downloads: true
-description: Vous trouverez sur ce site quelques documents techniques.
+description:
+  en: You will find on this site some technical documents.
+  fr: Vous trouverez sur ce site quelques documents techniques.
 baseurl: ""
 url: ""
 github_username: CGareau
-locale:       "fr_FR"
+index:
+  en: home.html
+  fr: accueil.html
+feed:
+  en: /feed.xml
+  fr: /flux.xml
 
 # Build settings
 theme: jekyll-theme-architect
@@ -13,6 +20,4 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
-
-# Other
 markdown: kramdown
