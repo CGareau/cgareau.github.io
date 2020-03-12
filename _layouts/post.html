@@ -9,16 +9,17 @@ layout: default
     {% assign posts=site.posts | where:"lang", page.lang %}
     {%- if posts.size > 0 -%}
       {%- for post in posts -%}
-          {% if page.lang == 'en' %}
-            {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-          {% endif %}
-          {% if page.lang == 'fr' %}
-            {%- assign date_format = site.minima.date_format | default: "%-d %b, %Y" -%}
-          {% endif %}
-          <span class="post-meta">{{ post.date | date: date_format }}</span> :
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
+        {% if page.lang == 'en' %}
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {% endif %}
+        {% if page.lang == 'fr' %}
+          {%- assign date_format = site.minima.date_format | default: "%-d %b, %Y" -%}
+        {% endif %}
+        <span class="post-meta">{{ post.date | date: date_format }}</span> :
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+        </br></br>
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}
@@ -28,12 +29,20 @@ layout: default
   </aside>
 
   <div class="wrapper" style="text-align: right; line-height: 2em">
+
+
+
     {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
-    {% for post in posts %} <a href="{{ post.url | prepend: site.baseurl }}" class="{{ post.lang }}">{{ post.lang }}</a> {% endfor %}
+    {% for post in posts %}
+      {% if post.lang-ref == page.lang-ref %}
+        <a href="{{ post.url | prepend: site.baseurl }}" class="{{ post.lang }}">{{ post.lang }}</a>
+      {% endif %}
+    {% endfor %}
+    
   </div>
 
   {%- if page.title -%}
-      <h1 class="page-heading">{{ page.title }}</h1>
+    <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
 
   {{ content }}
