@@ -7,7 +7,7 @@ _`Wiki 4D` regroupe différents articles et process techniques._
 ## Contribuer
 
 Intéressé(e) pour contribuer au développement du site ? Vous êtes le(a) bienvenu(e) !
-`Wiki 4D` est un projet open source, fruit de la collaboration de passionés par la technologie 4D.
+`Wiki 4D` est un projet open source, fruit de la collaboration de passionés par la technologie 4D. 
 
 <br>
 
