@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 gem "github-pages", group: :jekyll_plugins
 gem "faraday", ">= 2.14.2"
+gem "nokogiri", ">= 1.19.5"
+gem "activesupport", ">= 8.1.4.1"
 
 group :jekyll_plugins do
   gem "jekyll-feed"
